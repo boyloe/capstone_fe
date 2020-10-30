@@ -8,14 +8,6 @@ export default function ViewCandidates() {
   const [candidateList, setCandidateList] = useState([])
   const baseURL = 'http://localhost:3000'
 
-  // const Item = (candidate) => {
-  //   <View>
-  //     <Text>{candidate.ballotName}</Text>
-  //     <Text>{candidate.electionParties}</Text>
-  //     <Text>{candidate.electionOffice}</Text>
-  //   </View>
-  // }
-
   const renderItem = (item) => {
     return <Item key={item.id} title={item.ballotName}/>
   }
