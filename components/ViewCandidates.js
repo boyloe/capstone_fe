@@ -20,12 +20,14 @@ export default function ViewCandidates() {
 
   return(
     <View style={styles.container}>
-      <Text>Zip Code:</Text>
+      <Text style={styles.heading}>Candidates</Text>
+      <Text>Enter zip code to see who's running for office:</Text>
       <TextInput style={styles.input} onChangeText={setZipCode} value={zipCode}/>
       <Button
         onPress={(event) => getCandidates(event, zipCode)}
+        style={styles.button}
         title="Submit"
-        color="#841584"
+        color="#1D3557"
         accessibilityLabel="Enter your zip code to view your candidates."/>
       <SafeAreaView style={styles.container}>
         <FlatList
@@ -44,15 +46,24 @@ export default function ViewCandidates() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: .5,
-    backgroundColor: '#fff',
+    flex: 1,
+    backgroundColor: '#F1FAEE',
     alignItems: 'center',
     justifyContent: 'center',
   },
   input: {
-    border: 'solid 1px #000'
+    borderStyle: 'solid',
+    borderColor: '#1D3557',
+    borderWidth: 1,
+    minWidth: 100,
+    margin: 10
   },
   list: {
-    backgroundColor: 'light blue',
+    // backgroundColor: 'light blue',
+  },
+  heading: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    margin: 10
   }
 })

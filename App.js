@@ -25,9 +25,9 @@ export default function App() {
         name="SwingVote"
         component={Home}
         options={{
-          headerStyle: {height: 100, backgroundColor: "#1D3557"},
-          headerLeft: () => <Image 
-            style={{ width: 100, height: 90 }}
+          headerStyle: {height: 110, backgroundColor: "#A8DADC"},
+          headerTitle: () => <Image 
+            style={{ width: 160, height: 150, alignSelf: 'center' }}
             source = { require('./logo.png') }
             />
           }}

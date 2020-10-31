@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    border: 'solid 1px #000'
+    // border: 'solid 1px #000'
   }
 })
