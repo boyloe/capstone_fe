@@ -10,6 +10,7 @@ import ViewElections from './ViewElections';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faPersonBooth, faBullhorn, faFlagUsa } from '@fortawesome/free-solid-svg-icons'
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,16 +25,11 @@ export default function Home({ navigation }) {
           activeBackgroundColor: '#1D3557',
           inactiveBackgroundColor: '#1D3557',
           labelStyle: {
-            fontSize: 18,
-            padding: 3
+            fontSize: scale(18),
+            padding: scale(3)
           },
           style: {
-            height: 70
-          },
-          iconStyle: {
-            padding: 2,
-            paddingBottom: 0,
-            // color: '#F1FAEE'
+            height: scale(85)
           }
       }}>
         <Tab.Screen name="Candidates"
@@ -41,15 +37,15 @@ export default function Home({ navigation }) {
           tabStyle={styles.tabBar}
           options={{
             tabBarIcon: ({tintColor}) => (
-            <FontAwesomeIcon icon={ faBullhorn } size={28} color={tintColor}/>)}} />
+            <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={tintColor}/>)}} />
         <Tab.Screen name="Officials"
           component={ViewOfficials}
           options={{ tabBarIcon: ({tintColor}) => (
-            <FontAwesomeIcon icon={ faFlagUsa } size={28} color={tintColor}/>)}} />
+            <FontAwesomeIcon icon={ faFlagUsa } size={scale(22)} color={tintColor}/>)}} />
         <Tab.Screen name="Elections"
           component={ViewElections}
           options={{ tabBarIcon: ({tintColor}) => (
-            <FontAwesomeIcon icon={ faPersonBooth } size={28} color={tintColor}/>)}} />
+            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={tintColor}/>)}} />
       </Tab.Navigator>
   )
 }

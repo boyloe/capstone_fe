@@ -9,7 +9,7 @@ export default function ViewOfficials() {
   const baseURL = 'http://localhost:3000'
 
   const renderItem = (item) => {
-    return <Item key={item.id} title={item.ballotName}/>
+    return <Item id={item.id} title={item.ballotName}/>
   }
 
   const getOfficials = (event, zipCode) => {
@@ -34,7 +34,7 @@ export default function ViewOfficials() {
           style={styles.list}
           data={officialList}
           renderItem={({item}) => (
-            <View>
+            <View key={item.id}>
               <Text>{item.ballotName}</Text>
             <Text>{item.electionParties} Party</Text>
             <Text>{item.electionOffice}</Text>

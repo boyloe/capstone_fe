@@ -7,6 +7,7 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import LoginForm from './components/LoginForm';
 import CreateAccount from './components/CreateAccount';
 import Home from './components/Home';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 const Stack = createStackNavigator();
 
@@ -25,9 +26,9 @@ export default function App() {
         name="SwingVote"
         component={Home}
         options={{
-          headerStyle: {height: 110, backgroundColor: "#A8DADC"},
+          headerStyle: {height: scale(110), backgroundColor: "#A8DADC"},
           headerTitle: () => <Image 
-            style={{ width: 160, height: 150, alignSelf: 'center' }}
+            style={{ width: scale(115), height: scale(105), alignSelf: 'center', marginBottom: scale(5)}}
             source = { require('./logo.png') }
             />
           }}
