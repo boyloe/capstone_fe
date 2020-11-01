@@ -25,7 +25,7 @@ export default function Home({ navigation }) {
           activeBackgroundColor: '#1D3557',
           inactiveBackgroundColor: '#1D3557',
           labelStyle: {
-            fontSize: scale(18),
+            fontSize: scale(15),
             padding: scale(3)
           },
           style: {
@@ -36,16 +36,16 @@ export default function Home({ navigation }) {
           component={ViewCandidates}
           tabStyle={styles.tabBar}
           options={{
-            tabBarIcon: ({tintColor}) => (
-            <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={tintColor}/>)}} />
+            tabBarIcon: ({ focused }) => (
+            <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}} />
         <Tab.Screen name="Officials"
           component={ViewOfficials}
-          options={{ tabBarIcon: ({tintColor}) => (
-            <FontAwesomeIcon icon={ faFlagUsa } size={scale(22)} color={tintColor}/>)}} />
+          options={{ tabBarIcon: ({ focused }) => (
+            <FontAwesomeIcon icon={ faFlagUsa } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}} />
         <Tab.Screen name="Elections"
           component={ViewElections}
-          options={{ tabBarIcon: ({tintColor}) => (
-            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={tintColor}/>)}} />
+          options={{ tabBarIcon: ({ focused }) => (
+            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}} />
       </Tab.Navigator>
   )
 }

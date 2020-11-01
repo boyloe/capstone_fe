@@ -6,12 +6,23 @@ import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 export default function ViewCandidates() {
 
-  const [zipCode, setZipCode] = useState('Zip Code')
+  const [zipCode, setZipCode] = useState()
   const [candidateList, setCandidateList] = useState([])
   const baseURL = 'http://localhost:3000'
 
-  const renderItem = (item) => {
-    return <Item keyExtractor={item.id} title={item.ballotName}/>
+  const Item = ({ item, onPress, style }) => (
+
+    <TouchableOpacity style={styles.item}>
+      <Text style={styles.ballotName}>{item.ballotName}</Text>
+      <Text style={styles.info}>{item.electionParties} Party</Text>
+      <Text style={styles.info}>{item.electionOffice}</Text>
+    </TouchableOpacity>
+  )
+
+  const renderItem = ({item}) => {
+    return(
+      <Item item={item}/>
+    )
   }
 
   const getCandidates = (event, zipCode) => {
@@ -23,7 +34,7 @@ export default function ViewCandidates() {
   return(
     <View style={styles.container}>
       <Text style={styles.heading}>Candidates</Text>
-      <Text>Enter zip code to see who's running for office:</Text>
+      <Text style={styles.directions}>Enter zip code to see who's running for office:</Text>
       <View style={styles.zipContainer}>
         <TextInput style={styles.input} onChangeText={setZipCode} value={zipCode} placeholder={'Zip Code'}/>
         <TouchableOpacity
@@ -35,14 +46,12 @@ export default function ViewCandidates() {
       </View>
       <SafeAreaView style={styles.listContainer}>
         <FlatList
+          title
           style={styles.list}
+          extraData={candidateList}
           data={candidateList}
-          renderItem={({item}) => (
-            <View style={styles.item}>
-              <Text>{item.ballotName}</Text>
-            <Text>{item.electionParties} Party</Text>
-            <Text>{item.electionOffice}</Text>
-          </View>)}/>
+          keyExtractor={item => item.id}
+          renderItem={renderItem}/>
       </SafeAreaView>
     </View>
   )
@@ -65,10 +74,17 @@ const styles = StyleSheet.create({
     minHeight: scale(20),
     fontSize: scale(15),
     textAlign: 'center',
-    padding: scale(5)
+    padding: scale(5),
+    color: '#1D3557'
     },
   item: {
-    fontSize: scale(15)
+    borderStyle: 'solid',
+    borderWidth: scale(1),
+    borderRadius: scale(5),
+    borderColor: '#457B9D',
+    padding: scale(10),
+    margin: scale(5),
+    alignItems: 'center'
   },
   heading: {
     fontSize: scale(25),
@@ -96,5 +112,19 @@ const styles = StyleSheet.create({
   listContainer: {
     width: scale(250),
     padding: scale(10)
+  },
+  ballotName: {
+    fontSize: scale(15),
+    fontWeight: 'bold',
+    padding: scale(3),
+    color: '#1D3557',
+    textAlign: 'center'
+  },
+  info: {
+    fontSize: scale(12),
+    color: '#1D3557'
+  },
+  directions: {
+    fontSize: scale(15)
   }
 })
