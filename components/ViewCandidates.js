@@ -6,7 +6,8 @@ import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 export default function ViewCandidates() {
 
-  const [zipCode, setZipCode] = useState()
+  const [zipCode5, setZipCode5] = useState()
+  const [zipCode4, setZipCode4] = useState()
   const [candidateList, setCandidateList] = useState([])
   const baseURL = 'http://localhost:3000'
 
@@ -21,12 +22,14 @@ export default function ViewCandidates() {
 
   const renderItem = ({item}) => {
     return(
-      <Item item={item}/>
+      <Item key={item.id} item={item}/>
     )
   }
 
-  const getCandidates = (event, zipCode) => {
-    fetch(`${baseURL}/candidates/zip/${zipCode}`)
+  const getCandidates = (event, zipCode5, zipCode4) => {
+    (zipCode4 ? 
+    fetch(`${baseURL}/candidates/zipfull/${zipCode5}/${zipCode4}`) :
+    fetch(`${baseURL}/candidates/zip/${zipCode5}`))
       .then(response => response.json())
       .then(data => setCandidateList(data.candidateList.candidate))
   }
@@ -36,9 +39,10 @@ export default function ViewCandidates() {
       <Text style={styles.heading}>Candidates</Text>
       <Text style={styles.directions}>Enter zip code to see who's running for office:</Text>
       <View style={styles.zipContainer}>
-        <TextInput style={styles.input} onChangeText={setZipCode} value={zipCode} placeholder={'Zip Code'}/>
+        <TextInput style={styles.input} onChangeText={setZipCode5} value={zipCode5} placeholder={'5 Digit Zip'}/>
+        <TextInput style={styles.input} onChangeText={setZipCode4} value={zipCode4} placeholder={'+ 4'}/>
         <TouchableOpacity
-          onPress={(event) => getCandidates(event, zipCode)}
+          onPress={(event) => getCandidates(event, zipCode5, zipCode4)}
           style={styles.button}
           accessibilityLabel="Enter your zip code to view your candidates.">
             <Text style={styles.buttonText}>Submit</Text>
