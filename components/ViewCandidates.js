@@ -33,6 +33,7 @@ export default function ViewCandidates() {
       .then(response => response.json())
       .then(data => setCandidateList(data.candidateList.candidate))
   }
+  console.log(candidateList)
 
   return(
     <View style={styles.container}>
@@ -73,12 +74,12 @@ const styles = StyleSheet.create({
     borderColor: '#1D3557',
     borderWidth: scale(1),
     minWidth: scale(100),
-    margin: scale(10),
+    margin: scale(5),
     borderRadius: scale(5),
     minHeight: scale(20),
     fontSize: scale(15),
     textAlign: 'center',
-    padding: scale(5),
+    padding: scale(4),
     color: '#1D3557'
     },
   item: {
@@ -99,7 +100,8 @@ const styles = StyleSheet.create({
   button: {
     padding: scale(5),
     backgroundColor:'#1D3557',
-    borderRadius: scale(5)
+    borderRadius: scale(5),
+    margin: scale(2)
   },
   buttonText: {
     color: '#F1FAEE',
