@@ -4,7 +4,7 @@ import { View, TextInput, StyleSheet, Text, Button, FlatList, SafeAreaView, Scro
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
-export default function ViewOfficials() {
+export default function ViewOfficials({ navigation }) {
 
   const [zipCode5, setZipCode5] = useState()
   const [zipCode4, setZipCode4] = useState()
@@ -13,7 +13,10 @@ export default function ViewOfficials() {
 
   const Item = ({ item, onPress, style }) => (
 
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity
+    style={styles.item}
+    onPress={() => navigation.navigate('CandidateBio')}
+    >
       <Text style={styles.ballotName}>{item.firstName} {item.lastName}</Text>
       <Text style={styles.info}>{item.title}</Text>
       <Text style={styles.info}>{item.officeParties} Party</Text>
@@ -22,7 +25,7 @@ export default function ViewOfficials() {
 
   const renderItem = ({item}) => {
     return(
-      <Item key={item.id} item={item}/>
+      <Item item={item}/>
     )
   }
 
@@ -54,7 +57,9 @@ export default function ViewOfficials() {
           style={styles.list}
           extraData={officialList}
           data={officialList}
-          keyExtractor={item => item.id}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
           renderItem={renderItem}/>
       </SafeAreaView>
     </View>
@@ -73,12 +78,12 @@ const styles = StyleSheet.create({
     borderColor: '#1D3557',
     borderWidth: scale(1),
     minWidth: scale(100),
-    margin: scale(10),
+    margin: scale(5),
     borderRadius: scale(5),
     minHeight: scale(20),
     fontSize: scale(15),
     textAlign: 'center',
-    padding: scale(5),
+    padding: scale(4),
     color: '#1D3557'
     },
   item: {

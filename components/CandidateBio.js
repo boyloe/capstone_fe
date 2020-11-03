@@ -4,23 +4,23 @@ import { View, TextInput, StyleSheet, Text, Button, Image, SafeAreaView, ScrollV
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
-export default function CandidateBio({ candidateId }) {
+export default function CandidateBio({ id }) {
 
-  const [candidate, setCandidate] = useState('')
+  const [candidateId, setCandidateId] = useState('')
   const [candidateInfo, setCandidateInfo] = useState({})
   const baseURL = 'http://localhost:3000'
 
   useEffect(() => {
-    setCandidate(props.can_id)
-    fetch(`${baseURL}/candidates/bio/${can_id}`)
+    setCandidateId(id)
+    fetch(`${baseURL}/candidates/bio/${candidateId}`)
       .then(response => response.json())
       .then((results) => setCandidateInfo(results))
   })
 
   const renderBio = (candidateInfo) => {
     <View>
-      {candidateInfo.candidate.photo ? <Image
-        source={{ uri: candidateInfo.candidate.photo , }}/> : <Image></Image>}
+      {candidateInfo.candidate.photo ? 
+      <Image source={{ uri: candidateInfo.candidate.photo , }}/> : <Image></Image>}
       <Text>{candidateInfo.candidate.firstName} {candidateInfo.candidate.lastName}</Text>
       {candidateInfo.office ? 
         <>

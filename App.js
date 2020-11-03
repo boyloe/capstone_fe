@@ -8,16 +8,12 @@ import LoginForm from './components/LoginForm';
 import CreateAccount from './components/CreateAccount';
 import Home from './components/Home';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import CandidateBio from './components/CandidateBio';
 
 const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
 
 export default function App() {
-
-  // const [count, setCount] = useState(0)
-
-  // const handlePress = () => {
-  //   setCount(count + 1)
-  // }
 
   return (
     <NavigationContainer>
@@ -34,6 +30,14 @@ export default function App() {
           }}
         />
       </Stack.Navigator>
+      <RootStack.Navigator mode="modal">
+        <RootStack.Screen
+          name="Main"
+          component={MainStackScreen}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen name="MyModal" component={ModalScreen} />
+    </RootStack.Navigator>
     </NavigationContainer>
   );
 }

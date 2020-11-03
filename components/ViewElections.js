@@ -21,7 +21,7 @@ export default function ViewElections() {
 
   const renderItem = ({item}) => {
     return(
-      <Item key={item.id} item={item}/>
+      <Item item={item}/>
     )
   }
 
@@ -53,7 +53,9 @@ export default function ViewElections() {
           style={styles.list}
           extraData={electionList}
           data={electionList}
-          keyExtractor={item => item.id}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
           renderItem={renderItem}/>
       </SafeAreaView>
     </View>
@@ -72,12 +74,12 @@ const styles = StyleSheet.create({
     borderColor: '#1D3557',
     borderWidth: scale(1),
     minWidth: scale(100),
-    margin: scale(10),
+    margin: scale(5),
     borderRadius: scale(5),
     minHeight: scale(20),
     fontSize: scale(15),
     textAlign: 'center',
-    padding: scale(5),
+    padding: scale(4),
     color: '#1D3557'
     },
   item: {

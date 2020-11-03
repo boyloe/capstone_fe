@@ -22,7 +22,7 @@ export default function ViewCandidates() {
 
   const renderItem = ({item}) => {
     return(
-      <Item key={item.id} item={item}/>
+      <Item item={item}/>
     )
   }
 
@@ -55,7 +55,9 @@ export default function ViewCandidates() {
           style={styles.list}
           extraData={candidateList}
           data={candidateList}
-          keyExtractor={item => item.id}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
           renderItem={renderItem}/>
       </SafeAreaView>
     </View>
