@@ -10,7 +10,7 @@ export default function ViewOfficials({ navigation }) {
   const [zipCode5, setZipCode5] = useState()
   const [zipCode4, setZipCode4] = useState()
   const [officialList, setOfficialList] = useState([])
-  const [candidateId, setCandidateId] = useState()
+  const [candidateId, setCandidateId] = useState(0)
   const [bioVisible, setBioVisible] = useState(false)
 
   const baseURL = 'http://localhost:3000'
@@ -18,6 +18,7 @@ export default function ViewOfficials({ navigation }) {
   const Item = ({ item, onPress, style }) => (
     <TouchableOpacity
       style={styles.item}
+      key={item.id}
       onPress={() => selectCandidate(item)}
     >
       <Text style={styles.ballotName}>{item.firstName} {item.lastName}</Text>
@@ -27,12 +28,12 @@ export default function ViewOfficials({ navigation }) {
   )
 
   const selectCandidate = (item) => {
-    let id = item.candidateId
     console.log(item.candidateId)
-    setBioVisible(!bioVisible)
-    setCandidateId(id)
-    console.log(candidateId, bioVisible)
+    setCandidateId(item.candidateId)
+    setBioVisible(true)
   }
+
+  console.log(candidateId, bioVisible)
 
   const renderItem = ({item}) => {
     return(
@@ -52,16 +53,16 @@ export default function ViewOfficials({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.heading}>Officials</Text>
       <Text style={styles.directions}>Enter zip code to view representatives:</Text>
-      {bioVisible ? <><CandidateBio id={candidateId}/></> :
-      <><View style={styles.zipContainer}>
+      <View style={styles.zipContainer}>
         <TextInput style={styles.input} onChangeText={setZipCode5} value={zipCode5} placeholder={'5 Digit Zip'}/>
         <TextInput style={styles.input} onChangeText={setZipCode4} value={zipCode4} placeholder={'+ 4'}/>
+        {bioVisible && candidateId !==0 ? <CandidateBio id={candidateId} setBioVisible={setBioVisible}/> :
         <TouchableOpacity
           onPress={(event) => getOfficials(event, zipCode5, zipCode4)}
           style={styles.button}
           accessibilityLabel="Enter your zip code to view your officials.">
             <Text style={styles.buttonText}>Submit</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>}
       </View>
       <SafeAreaView style={styles.listContainer}>
         <FlatList
@@ -74,7 +75,6 @@ export default function ViewOfficials({ navigation }) {
           }}
           renderItem={renderItem}/>
       </SafeAreaView>
-      </>}
     </View>
 
   )
