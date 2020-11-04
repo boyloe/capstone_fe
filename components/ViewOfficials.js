@@ -1,27 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Text, Button, FlatList, SafeAreaView, ScrollView } from 'react-native';
+import { View, TextInput, StyleSheet, Text, Button, FlatList, Modal, SafeAreaView, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import CandidateBio from './CandidateBio';
 
 export default function ViewOfficials({ navigation }) {
 
   const [zipCode5, setZipCode5] = useState()
   const [zipCode4, setZipCode4] = useState()
   const [officialList, setOfficialList] = useState([])
+  const [candidateId, setCandidateId] = useState()
+  const [bioVisible, setBioVisible] = useState(false)
+
   const baseURL = 'http://localhost:3000'
 
   const Item = ({ item, onPress, style }) => (
-
     <TouchableOpacity
-    style={styles.item}
-    onPress={() => navigation.navigate('CandidateBio')}
+      style={styles.item}
+      onPress={() => selectCandidate(item)}
     >
       <Text style={styles.ballotName}>{item.firstName} {item.lastName}</Text>
       <Text style={styles.info}>{item.title}</Text>
       <Text style={styles.info}>{item.officeParties} Party</Text>
     </TouchableOpacity>
   )
+
+  const selectCandidate = (item) => {
+    let id = item.candidateId
+    console.log(item.candidateId)
+    setBioVisible(!bioVisible)
+    setCandidateId(id)
+    console.log(candidateId, bioVisible)
+  }
 
   const renderItem = ({item}) => {
     return(
@@ -41,7 +52,8 @@ export default function ViewOfficials({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.heading}>Officials</Text>
       <Text style={styles.directions}>Enter zip code to view representatives:</Text>
-      <View style={styles.zipContainer}>
+      {bioVisible ? <><CandidateBio id={candidateId}/></> :
+      <><View style={styles.zipContainer}>
         <TextInput style={styles.input} onChangeText={setZipCode5} value={zipCode5} placeholder={'5 Digit Zip'}/>
         <TextInput style={styles.input} onChangeText={setZipCode4} value={zipCode4} placeholder={'+ 4'}/>
         <TouchableOpacity
@@ -62,7 +74,9 @@ export default function ViewOfficials({ navigation }) {
           }}
           renderItem={renderItem}/>
       </SafeAreaView>
+      </>}
     </View>
+
   )
 }
 
