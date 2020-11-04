@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, StyleSheet, Text, Button, Image, SafeAreaView, ScrollView, Modal } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faAlignJustify, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function CandidateBio({ id, setBioVisible }) {
 
@@ -19,12 +21,17 @@ export default function CandidateBio({ id, setBioVisible }) {
   console.log(candidateInfo)
 
   const renderBio = (candidateInfo) => {
-    console.log(candidateInfo)
+    console.log('photo', candidateInfo.bio.candidate.photo)
     return(
     <View>
-      <Button title='Back' onPress={() => setBioVisible(false)}></Button>
+      <TouchableOpacity
+      style={styles.back}
+      onPress={() => setBioVisible(false)}
+      accessibilityLabel="Press to go back.">
+      <FontAwesomeIcon icon={ faChevronLeft } size={scale(22)} color='#1D3557'/>
+      </TouchableOpacity>
       {candidateInfo.bio.candidate.photo ? 
-      <Image source={{ uri: candidateInfo.bio.candidate.photo , }}/> : <Image></Image>}
+      <Image style={styles.headshot} source={{ uri: candidateInfo.bio.candidate.photo ,}}/> : <Text>"No photo provided"</Text>}
       <Text>{candidateInfo.bio.candidate.firstName} {candidateInfo.bio.candidate.lastName}</Text>
       {candidateInfo.bio.office ? 
         <>
@@ -57,3 +64,15 @@ export default function CandidateBio({ id, setBioVisible }) {
       </>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  back: {
+    margin: scale(10)
+  },
+  headshot: {
+    alignSelf: 'center',
+  }
+});

@@ -51,18 +51,18 @@ export default function ViewOfficials({ navigation }) {
 
   return(
     <View style={styles.container}>
-      <Text style={styles.heading}>Officials</Text>
+      {bioVisible && candidateId !==0 ? <CandidateBio id={candidateId} setBioVisible={setBioVisible}/> :
+      <><Text style={styles.heading}>Officials</Text>
       <Text style={styles.directions}>Enter zip code to view representatives:</Text>
       <View style={styles.zipContainer}>
         <TextInput style={styles.input} onChangeText={setZipCode5} value={zipCode5} placeholder={'5 Digit Zip'}/>
         <TextInput style={styles.input} onChangeText={setZipCode4} value={zipCode4} placeholder={'+ 4'}/>
-        {bioVisible && candidateId !==0 ? <CandidateBio id={candidateId} setBioVisible={setBioVisible}/> :
         <TouchableOpacity
           onPress={(event) => getOfficials(event, zipCode5, zipCode4)}
           style={styles.button}
           accessibilityLabel="Enter your zip code to view your officials.">
             <Text style={styles.buttonText}>Submit</Text>
-        </TouchableOpacity>}
+        </TouchableOpacity>
       </View>
       <SafeAreaView style={styles.listContainer}>
         <FlatList
@@ -74,7 +74,7 @@ export default function ViewOfficials({ navigation }) {
             return item.id;
           }}
           renderItem={renderItem}/>
-      </SafeAreaView>
+      </SafeAreaView></>}
     </View>
 
   )
