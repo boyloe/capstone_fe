@@ -23,7 +23,7 @@ export default function CandidateBio({ id, setBioVisible }) {
   const renderBio = (candidateInfo) => {
     console.log('photo', candidateInfo.bio.candidate.photo)
     return(
-    <View>
+    <View style={styles.infoContainer}>
       <TouchableOpacity
       style={styles.back}
       onPress={() => setBioVisible(false)}
@@ -31,7 +31,7 @@ export default function CandidateBio({ id, setBioVisible }) {
       <FontAwesomeIcon icon={ faChevronLeft } size={scale(22)} color='#1D3557'/>
       </TouchableOpacity>
       {candidateInfo.bio.candidate.photo ? 
-      <Image style={styles.headshot} source={{ uri: candidateInfo.bio.candidate.photo ,}}/> : <Text>"No photo provided"</Text>}
+      <Image style={styles.headshot} resizeMode='contain' source={{ uri: candidateInfo.bio.candidate.photo ,}}/> : <Text>"No photo provided"</Text>}
       <Text>{candidateInfo.bio.candidate.firstName} {candidateInfo.bio.candidate.lastName}</Text>
       {candidateInfo.bio.office ? 
         <>
@@ -73,6 +73,18 @@ const styles = StyleSheet.create({
     margin: scale(10)
   },
   headshot: {
+    // flex: 1,
     alignSelf: 'center',
+    width: scale(110),
+    height: scale(135),
+    margin: scale(8),
+    borderColor: '#457B9D',
+    borderWidth: scale(4)
+  },
+  infoContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: scale(5)
   }
 });
