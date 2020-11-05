@@ -5,10 +5,14 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronLeft, faHome, faBriefcase, faVoteYea } from '@fortawesome/free-solid-svg-icons'
+import Collapsible from 'react-native-collapsible';
 
 export default function CandidateBio({ id, setBioVisible }) {
 
   const [candidateInfo, setCandidateInfo] = useState({})
+  const [isOfficeCollapsed, setIsOfficeCollapsed] = useState(true)
+  const [isPersonalCollapsed, setIsPersonalCollapsed] = useState(true)
+  const [isElectionCollapsed, setIsElectionCollapsed] = useState(true)
 
   const baseURL = 'http://localhost:3000'
 
@@ -34,28 +38,33 @@ export default function CandidateBio({ id, setBioVisible }) {
       <Text style={styles.ballotName}>{candidateInfo.bio.candidate.firstName} {candidateInfo.bio.candidate.lastName}</Text>
       {candidateInfo.bio.office ? 
         <>
-          <View style={styles.headerRow} flexDirection='row'><FontAwesomeIcon icon={ faBriefcase } size={scale(15)} color='#E63946'/><Text style={styles.heading}>  Office Information</Text></View>
-          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Title:</Text><Text style={styles.info}> {candidateInfo.bio.office.title} - {candidateInfo.bio.office.type} </Text></View>
-          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>District:</Text><Text style={styles.info}> {candidateInfo.bio.office.district} </Text></View>
-          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Party:</Text><Text style={styles.info}>{candidateInfo.bio.office.parties} </Text></View>
-          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Status:</Text><Text style={styles.info}> {candidateInfo.bio.office.status} </Text></View>
-          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Last Elected:</Text><Text style={styles.info}> {candidateInfo.bio.office.lastElect} </Text></View>
+        <TouchableOpacity onPress={() => setIsOfficeCollapsed(!isOfficeCollapsed)}><View style={styles.headerRow} flexDirection='row'><FontAwesomeIcon icon={ faBriefcase } size={scale(15)} color='#E63946'/><Text style={styles.heading}>  Office Information</Text></View></TouchableOpacity>
+          <Collapsible collapsed={isOfficeCollapsed}>
+            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Title:</Text><Text style={styles.info}> {candidateInfo.bio.office.title} - {candidateInfo.bio.office.type} </Text></View>
+            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>District:</Text><Text style={styles.info}> {candidateInfo.bio.office.district} </Text></View>
+            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Party:</Text><Text style={styles.info}>{candidateInfo.bio.office.parties} </Text></View>
+            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Status:</Text><Text style={styles.info}> {candidateInfo.bio.office.status} </Text></View>
+            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Last Elected:</Text><Text style={styles.info}> {candidateInfo.bio.office.lastElect} </Text></View>
+          </Collapsible>
         </>
        : null }
       {candidateInfo.bio.election ?
           <>
-            <View flexDirection='row' style={styles.headerRow}><FontAwesomeIcon icon={ faVoteYea } size={scale(16)} color='#E63946'/><Text style={styles.heading}>  Election Information</Text></View>
-            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Office:</Text><Text style={styles.info}>{candidateInfo.bio.election.office} </Text></View>
-            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Party:</Text><Text style={styles.info}>{candidateInfo.bio.election.parties} </Text></View>
-            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Status:</Text><Text style={styles.info}> {candidateInfo.bio.election.status} </Text></View>
+            <TouchableOpacity onPress={() => setIsElectionCollapsed(!isElectionCollapsed)}><View flexDirection='row' style={styles.headerRow}><FontAwesomeIcon icon={ faVoteYea } size={scale(16)} color='#E63946'/><Text style={styles.heading}>  Election Information</Text></View></TouchableOpacity>
+              <Collapsible collapsed={isElectionCollapsed}>
+              <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Office:</Text><Text style={styles.info}>{candidateInfo.bio.election.office} </Text></View>
+              <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Party:</Text><Text style={styles.info}>{candidateInfo.bio.election.parties} </Text></View>
+              <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Status:</Text><Text style={styles.info}> {candidateInfo.bio.election.status} </Text></View>
+            </Collapsible>
           </>
       : null }
-      <View flexDirection='row' style={styles.headerRow}><FontAwesomeIcon icon={ faHome } size={scale(16)} color='#E63946'/><Text style={styles.heading}>  Personal Information</Text></View>
-      <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Birthdate:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.birthDate}</Text></View>
-      <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Family:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.family}</Text></View>
-      <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Hometown:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.homeCity}, {candidateInfo.bio.candidate.homeState}</Text></View>
-      <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Religion:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.religion}</Text></View>
-
+      <TouchableOpacity onPress={() => setIsPersonalCollapsed(!isPersonalCollapsed)}><View flexDirection='row' style={styles.headerRow}><FontAwesomeIcon icon={ faHome } size={scale(16)} color='#E63946'/><Text style={styles.heading}>  Personal Information</Text></View></TouchableOpacity>
+      <Collapsible collapsed={isPersonalCollapsed}>
+        <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Birthdate:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.birthDate}</Text></View>
+        <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Family:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.family}</Text></View>
+        <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Hometown:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.homeCity}, {candidateInfo.bio.candidate.homeState}</Text></View>
+        <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Religion:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.religion}</Text></View>
+      </Collapsible>
     </View>
     )}
 
