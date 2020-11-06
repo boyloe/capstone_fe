@@ -4,7 +4,7 @@ import { View, TextInput, StyleSheet, Text, Button, Image, SafeAreaView, ScrollV
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faChevronLeft, faHome, faBriefcase, faVoteYea } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faHome, faBriefcase, faVoteYea, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import Collapsible from 'react-native-collapsible';
 
 export default function CandidateBio({ id, setBioVisible }) {
@@ -36,6 +36,10 @@ export default function CandidateBio({ id, setBioVisible }) {
       {candidateInfo.bio.candidate.photo ? 
         <Image style={styles.headshot} resizeMode='contain' source={{ uri: candidateInfo.bio.candidate.photo ,}}/> : <Text>"No photo provided"</Text>}
         <Text style={styles.ballotName}>{candidateInfo.bio.candidate.firstName} {candidateInfo.bio.candidate.lastName}</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'center', margin: scale(8)}}>
+          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsUp } size={scale(26)} color='#457B9D'/>
+          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsDown } size={scale(26)} color='#457B9D'/>
+        </View>
       {candidateInfo.bio.office ? 
         <>
         <TouchableOpacity onPress={() => setIsOfficeCollapsed(!isOfficeCollapsed)}><View style={styles.headerRow} flexDirection='row'><FontAwesomeIcon icon={ faBriefcase } size={scale(15)} color='#E63946'/><Text style={styles.heading}>  Office Information</Text></View></TouchableOpacity>
