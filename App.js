@@ -27,13 +27,14 @@ export default function App() {
           headerStyle: {height: scale(110), backgroundColor: "#1D3557"},
           headerTitle: () => 
           <View style={{flex: 1, flexDirection: 'row'}}>
-              <FontAwesomeIcon onPress={pressed} style={{alignSelf: 'center', left: scale(-80)}} icon={ faUserCircle } size={scale(26)} color='#F1FAEE'/>
               <Image 
-                style={{ width: scale(115), height: scale(105), alignSelf: 'center', marginLeft: scale(-15), marginBottom: scale(5)}}
+                style={{ width: scale(115), height: scale(105), alignSelf: 'center', marginBottom: scale(5)}}
                 source = { require('./logo.png') }
                 />
-          </View>
+          </View>,
+          headerLeft: () => <FontAwesomeIcon style={{margin: scale(18)}} onPress={pressed} icon={ faUserCircle } size={scale(28)} color='#F1FAEE'/>
           }}
+
         />
       </Stack.Navigator>
     </NavigationContainer>
