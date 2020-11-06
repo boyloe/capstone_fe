@@ -8,10 +8,14 @@ import LoginForm from './components/LoginForm';
 import CreateAccount from './components/CreateAccount';
 import Home from './components/Home';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 const Stack = createStackNavigator();
 
 export default function App() {
+
+  const pressed = () => console.log('pressed!')
 
   return (
     <NavigationContainer>
@@ -20,11 +24,15 @@ export default function App() {
         name="SwingVote"
         component={Home}
         options={{
-          headerStyle: {height: scale(110), backgroundColor: "#A8DADC"},
-          headerTitle: () => <Image 
-            style={{ width: scale(115), height: scale(105), alignSelf: 'center', marginBottom: scale(5)}}
-            source = { require('./logo.png') }
-            />
+          headerStyle: {height: scale(110), backgroundColor: "#1D3557"},
+          headerTitle: () => 
+          <View style={{flex: 1, flexDirection: 'row'}}>
+              <FontAwesomeIcon onPress={pressed} style={{alignSelf: 'center', left: scale(-80)}} icon={ faUserCircle } size={scale(26)} color='#F1FAEE'/>
+              <Image 
+                style={{ width: scale(115), height: scale(105), alignSelf: 'center', marginLeft: scale(-15), marginBottom: scale(5)}}
+                source = { require('./logo.png') }
+                />
+          </View>
           }}
         />
       </Stack.Navigator>

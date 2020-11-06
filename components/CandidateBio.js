@@ -28,14 +28,14 @@ export default function CandidateBio({ id, setBioVisible }) {
     return(
     <View style={styles.infoContainer}>
       <TouchableOpacity
-      style={styles.back}
-      onPress={() => setBioVisible(false)}
-      accessibilityLabel="Press to go back.">
-      <FontAwesomeIcon icon={ faChevronLeft } size={scale(22)} color='#1D3557'/>
+        style={styles.back}
+        onPress={() => setBioVisible(false)}
+        accessibilityLabel="Press to go back.">
+        <FontAwesomeIcon icon={ faChevronLeft } size={scale(22)} color='#1D3557'/>
       </TouchableOpacity>
       {candidateInfo.bio.candidate.photo ? 
-      <Image style={styles.headshot} resizeMode='contain' source={{ uri: candidateInfo.bio.candidate.photo ,}}/> : <Text>"No photo provided"</Text>}
-      <Text style={styles.ballotName}>{candidateInfo.bio.candidate.firstName} {candidateInfo.bio.candidate.lastName}</Text>
+        <Image style={styles.headshot} resizeMode='contain' source={{ uri: candidateInfo.bio.candidate.photo ,}}/> : <Text>"No photo provided"</Text>}
+        <Text style={styles.ballotName}>{candidateInfo.bio.candidate.firstName} {candidateInfo.bio.candidate.lastName}</Text>
       {candidateInfo.bio.office ? 
         <>
         <TouchableOpacity onPress={() => setIsOfficeCollapsed(!isOfficeCollapsed)}><View style={styles.headerRow} flexDirection='row'><FontAwesomeIcon icon={ faBriefcase } size={scale(15)} color='#E63946'/><Text style={styles.heading}>  Office Information</Text></View></TouchableOpacity>
@@ -59,12 +59,12 @@ export default function CandidateBio({ id, setBioVisible }) {
           </>
       : null }
       <TouchableOpacity onPress={() => setIsPersonalCollapsed(!isPersonalCollapsed)}><View flexDirection='row' style={styles.headerRow}><FontAwesomeIcon icon={ faHome } size={scale(16)} color='#E63946'/><Text style={styles.heading}>  Personal Information</Text></View></TouchableOpacity>
-      <Collapsible collapsed={isPersonalCollapsed}>
-        <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Birthdate:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.birthDate}</Text></View>
-        <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Family:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.family}</Text></View>
-        <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Hometown:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.homeCity}, {candidateInfo.bio.candidate.homeState}</Text></View>
-        <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Religion:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.religion}</Text></View>
-      </Collapsible>
+        <Collapsible collapsed={isPersonalCollapsed}>
+          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Birthdate:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.birthDate}</Text></View>
+          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Family:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.family}</Text></View>
+          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Hometown:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.homeCity}, {candidateInfo.bio.candidate.homeState}</Text></View>
+          <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Religion:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.religion}</Text></View>
+        </Collapsible>
     </View>
     )}
 
@@ -124,6 +124,6 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
   headerRow: {
-    margin: scale(5)
+    margin: scale(8)
   }
 });
