@@ -3,22 +3,34 @@ import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text, Button, FlatList, SafeAreaView, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import CandidateBio from './CandidateBio';
 
 export default function ViewCandidates() {
 
   const [zipCode5, setZipCode5] = useState()
   const [zipCode4, setZipCode4] = useState()
   const [candidateList, setCandidateList] = useState([])
+  const [candidateId, setCandidateId] = useState(0)
+  const [bioVisible, setBioVisible] = useState(false)
   const baseURL = 'http://localhost:3000'
 
   const Item = ({ item, onPress, style }) => (
 
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity
+    style={styles.item}
+    key={item.id}
+    onPress={() => selectCandidate(item)}>
       <Text style={styles.ballotName}>{item.ballotName}</Text>
       <Text style={styles.info}>{item.electionParties} Party</Text>
       <Text style={styles.info}>{item.electionOffice}</Text>
     </TouchableOpacity>
   )
+
+  const selectCandidate = (item) => {
+    console.log(item.candidateId)
+    setCandidateId(item.candidateId)
+    setBioVisible(true)
+  }
 
   const renderItem = ({item}) => {
     return(
@@ -37,7 +49,8 @@ export default function ViewCandidates() {
 
   return(
     <View style={styles.container}>
-      <Text style={styles.heading}>Candidates</Text>
+      {bioVisible && candidateId !==0 ? <CandidateBio id={candidateId} setBioVisible={setBioVisible}/> :
+      <><Text style={styles.heading}>Candidates</Text>
       <Text style={styles.directions}>Enter zip code to see who's running for office:</Text>
       <View style={styles.zipContainer}>
         <TextInput style={styles.input} onChangeText={setZipCode5} value={zipCode5} placeholder={'5 Digit Zip'}/>
@@ -59,7 +72,7 @@ export default function ViewCandidates() {
             return item.id;
           }}
           renderItem={renderItem}/>
-      </SafeAreaView>
+      </SafeAreaView></>}
     </View>
   )
 }
