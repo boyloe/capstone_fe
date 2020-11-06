@@ -40,6 +40,8 @@ export default function CandidateBio({ id, setBioVisible }) {
           <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsUp } size={scale(26)} color='#457B9D'/>
           <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsDown } size={scale(26)} color='#457B9D'/>
         </View>
+      <SafeAreaView>
+        <ScrollView>
       {candidateInfo.bio.office ? 
         <>
         <TouchableOpacity onPress={() => setIsOfficeCollapsed(!isOfficeCollapsed)}><View style={styles.headerRow} flexDirection='row'><FontAwesomeIcon icon={ faBriefcase } size={scale(15)} color='#E63946'/><Text style={styles.heading}>  Office Information</Text></View></TouchableOpacity>
@@ -69,6 +71,8 @@ export default function CandidateBio({ id, setBioVisible }) {
           <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Hometown:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.homeCity}, {candidateInfo.bio.candidate.homeState}</Text></View>
           <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Religion:</Text><Text style={styles.info}>{candidateInfo.bio.candidate.religion}</Text></View>
         </Collapsible>
+        </ScrollView>
+      </SafeAreaView>
     </View>
     )}
 
