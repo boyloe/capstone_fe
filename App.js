@@ -24,7 +24,7 @@ export default function App({ navigation }) {
   const baseURL = 'http://localhost:3000'
 
   const signup = (user) => {
-    return fetch(`${baseURL}/users`, {
+    fetch(`${baseURL}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -32,14 +32,14 @@ export default function App({ navigation }) {
       body: JSON.stringify({ user })
     })
       .then(response => response.json())
-      .then(console.log)
-      .then(response => {
-        if(response.errors) {
-          setAlerts(response.errors)
+      .then(data => {
+        if(data.errors) {
+          setAlerts(data.errors)
         } else {
-          AsyncStorage.setItem('token', reponse.token)
-          setUser(reponse.user)
+          AsyncStorage.setItem('token', data.token)
+          setUser(data.user)
           setAlerts([])
+          console.log(user)
         }
       })
   }
@@ -63,7 +63,6 @@ export default function App({ navigation }) {
       >
       <Stack.Screen 
         name='Home'
-        // component={Home}
         >
           {(props) => <Home
             user={user}
@@ -78,7 +77,6 @@ export default function App({ navigation }) {
         </Stack.Screen>
         <Stack.Screen 
         name='Profile'
-        // component={Home}
         >
           {(props) => <Profile
             user={user} 

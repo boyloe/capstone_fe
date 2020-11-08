@@ -23,7 +23,7 @@ export default function CreateAccount({ signup, alerts }) {
   }
 
 
-  const showAlerts = () => alerts.map(alert => <Text>{alert}</Text>)
+  const showAlerts = () => alerts.map(alert => <Text style={styles.alert}>{alert}</Text>)
 
   return(
     <View style={styles.container}>
@@ -36,13 +36,13 @@ export default function CreateAccount({ signup, alerts }) {
           <Text style={styles.labels}>Password:</Text>
           <TextInput style={styles.input} onChangeText={setPassword} value={password} secureTextEntry={true}/>
         </View>
+        {alerts ? showAlerts() : null}
         <TouchableOpacity
           style={styles.button}
           onPress={handleSubmit}
           color="#841584">
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
-        {alerts ? showAlerts() : null}
         { login ? 
         <><Text style={styles.labels}>Already registered?</Text>
         <TouchableOpacity style={styles.switchButton} onPress={handleLoginForm}>
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
       backgroundColor:'#1D3557',
       borderRadius: scale(5),
       margin: scale(15),
-      marginBottom: scale(20)
     },
     switchButton: {
       padding: scale(8),
@@ -114,5 +113,10 @@ const styles = StyleSheet.create({
     labels: {
       fontSize: scale(20),
       color: '#1D3557'
-  }
+    },
+      alert: {
+        color: '#E63946',
+        fontSize: scale(15),
+        margin: scale(10)
+      }
 })
