@@ -3,7 +3,7 @@ import React, { useState, useLayoutEffect } from 'react';
 import { StyleSheet, Text, View, Button, Modal } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginForm from './LoginForm';
+import CreateAccount from './CreateAccount';
 import ViewCandidates from './ViewCandidates';
 import ViewOfficials from './ViewOfficials';
 import ViewElections from './ViewElections';
@@ -15,11 +15,11 @@ import Profile from './Profile';
 
 const Tab = createBottomTabNavigator();
 
-export default function Home({ navigation }) {
+export default function Home({ alerts, navigation, user, signup, setUser, setLikedCandidates, setDislikedCandidates, likedCandidates, dislikedCandidates }) {
   const baseURL = 'http://localhost:3000'
 
 
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
         <FontAwesomeIcon icon={ faUserCircle } style={{margin: scale(18)}} size={scale(28)} color='#F1FAEE' onPress={() => navigation.navigate('Profile')} />
@@ -42,7 +42,27 @@ export default function Home({ navigation }) {
             height: scale(85)
           }
       }}>
-        <Tab.Screen name="Candidates"
+
+        { !user.username ? 
+          (<Tab.Screen name="Login"
+          // component={CreateAccount}
+          tabStyle={styles.tabBar}
+          options={{
+          tabBarIcon: ({ focused }) => (
+          <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+            {(props) => <CreateAccount
+            user={user}
+            alerts={alerts}
+            setUser={setUser}
+            setLikedCandidates={setLikedCandidates}
+            setDislikedCandidates={setDislikedCandidates}
+            signup={signup}
+            likedCandidates={likedCandidates}
+            dislikedCandidates={dislikedCandidates}
+            {...props} />}
+          </Tab.Screen>)
+        :
+        <><Tab.Screen name="Candidates"
           component={ViewCandidates}
           tabStyle={styles.tabBar}
           options={{
@@ -55,7 +75,7 @@ export default function Home({ navigation }) {
         <Tab.Screen name="Elections"
           component={ViewElections}
           options={{ tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}} />
+            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}} /></>}
       </Tab.Navigator>
   )
 }

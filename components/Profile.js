@@ -7,9 +7,9 @@ import { faChevronLeft, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-export default function Profile({ navigation }) {
+export default function Profile({ alerts, navigation, user, signup, setUser, setLikedCandidates, setDislikedCandidates, likedCandidates, dislikedCandidates  }) {
 
-  console.log('navigation', navigation)
+
   return(
     <View style={styles.container}>
       <Text>Hey! What is up?</Text>
