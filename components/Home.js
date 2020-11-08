@@ -9,7 +9,7 @@ import ViewOfficials from './ViewOfficials';
 import ViewElections from './ViewElections';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faPersonBooth, faBullhorn, faFlagUsa, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPersonBooth, faBullhorn, faFlagUsa, faUserCircle, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import Profile from './Profile';
 
@@ -44,12 +44,11 @@ export default function Home({ alerts, navigation, user, signup, setUser, setLik
       }}>
 
         { !user.username ? 
-          (<Tab.Screen name="Login"
-          // component={CreateAccount}
+          (<Tab.Screen name="Sign in to get started"
           tabStyle={styles.tabBar}
           options={{
           tabBarIcon: ({ focused }) => (
-          <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+          <FontAwesomeIcon icon={ faSignInAlt } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
             {(props) => <CreateAccount
             user={user}
             alerts={alerts}

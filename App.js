@@ -21,6 +21,7 @@ export default function App({ navigation }) {
   const [alerts, setAlerts] = useState([])
   const [likedCandidates, setLikedCandidates] = useState([])
   const [dislikedCandidates, setDislikedCandidates] = useState([])
+  const baseURL = 'http://localhost:3000'
 
   const signup = (user) => {
     return fetch(`${baseURL}/users`, {
@@ -31,9 +32,10 @@ export default function App({ navigation }) {
       body: JSON.stringify({ user })
     })
       .then(response => response.json())
+      .then(console.log)
       .then(response => {
         if(response.errors) {
-          setAlerts(reponse.errors)
+          setAlerts(response.errors)
         } else {
           AsyncStorage.setItem('token', reponse.token)
           setUser(reponse.user)
