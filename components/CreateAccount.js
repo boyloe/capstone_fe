@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, TextInput, StyleSheet, Text, Button } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
-export default function CreateAccount({ signup, alerts }) {
+export default function CreateAccount({ signup, alerts, login }) {
   const baseURL = 'http://localhost:3000'
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
-  const [login, setLogin] = useState(false)
+  const [loginScreen, setLoginScreen] = useState(false)
 
 
   const handleSubmit = (event) => {
@@ -15,11 +15,13 @@ export default function CreateAccount({ signup, alerts }) {
       username,
       password
     }
-    signup(user)
+    !loginScreen ?
+    login(user) 
+    : signup(user)
   }
 
   const handleLoginForm = () => {
-    setLogin(!login)
+    setLoginScreen(!loginScreen)
   }
 
 
@@ -27,7 +29,7 @@ export default function CreateAccount({ signup, alerts }) {
 
   return(
     <View style={styles.container}>
-      { login ? <Text style={styles.heading}>Create an Account</Text> : <Text style={styles.heading}>Log In</Text>}
+      { loginScreen ? <Text style={styles.heading}>Create an Account</Text> : <Text style={styles.heading}>Log In</Text>}
         <View style={{flexDirection: 'row', alignItems: 'center', margin: scale(8)}}>
           <Text style={styles.labels}>Username:</Text>
           <TextInput style={styles.input} onChangeText={setUserName} value={username}/>
@@ -43,7 +45,7 @@ export default function CreateAccount({ signup, alerts }) {
           color="#841584">
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
-        { login ? 
+        { loginScreen ? 
         <><Text style={styles.labels}>Already registered?</Text>
         <TouchableOpacity style={styles.switchButton} onPress={handleLoginForm}>
           <Text style={styles.switchButtonText}>Log In</Text>

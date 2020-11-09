@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation, withNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text, View, Button, Image, Modal } from 'react-native';
 import CreateAccount from './components/CreateAccount';
@@ -44,6 +44,32 @@ export default function App({ navigation }) {
       })
   }
 
+  const logout = () => {
+    AsyncStorage.removeItem('token')
+    setUser({})
+  }
+
+  const login = ({ username, password }) => {
+    fetch(`${baseURL}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if(data.errors) {
+          setAlerts(data.errors)
+        } else {
+          AsyncStorage.setItem('token', data.token)
+          setUser(data.user)
+          setAlerts([])
+          console.log(user)
+        }
+      })
+  }
+
   return (
     <>
 
@@ -66,11 +92,13 @@ export default function App({ navigation }) {
         >
           {(props) => <Home
             user={user}
+            navigation={navigation}
             alerts={alerts}
             setUser={setUser}
             setLikedCandidates={setLikedCandidates}
             setDislikedCandidates={setDislikedCandidates}
             signup={signup}
+            login={login}
             likedCandidates={likedCandidates}
             dislikedCandidates={dislikedCandidates}
             {...props} />}
@@ -81,6 +109,7 @@ export default function App({ navigation }) {
           {(props) => <Profile
             user={user} 
             alerts={alerts}
+            logout={logout}
             signup={signup}
             setUser={setUser}
             setLikedCandidates={setLikedCandidates}

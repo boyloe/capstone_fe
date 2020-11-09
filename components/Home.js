@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { StyleSheet, Text, View, Button, Modal } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,7 +15,7 @@ import Profile from './Profile';
 
 const Tab = createBottomTabNavigator();
 
-export default function Home({ alerts, navigation, user, signup, setUser, setLikedCandidates, setDislikedCandidates, likedCandidates, dislikedCandidates }) {
+export default function Home({ alerts, login, navigation, user, signup, setUser, setLikedCandidates, setDislikedCandidates, likedCandidates, dislikedCandidates }) {
   const baseURL = 'http://localhost:3000'
 
 
@@ -56,6 +56,7 @@ export default function Home({ alerts, navigation, user, signup, setUser, setLik
             setLikedCandidates={setLikedCandidates}
             setDislikedCandidates={setDislikedCandidates}
             signup={signup}
+            login={login}
             likedCandidates={likedCandidates}
             dislikedCandidates={dislikedCandidates}
             {...props} />}
