@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faChevronCircleDown, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronCircleDown, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Collapsible from 'react-native-collapsible';
@@ -21,29 +21,31 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
 
   const renderDislikedStat = () => {
     return (
-      dislikedCandidates.length === 1 ? `You have disliked ${dislikedCandidates.length} candidate.` :
-      `You have disliked ${dislikedCandidates.length} candidates.`
+      dislikedCandidates.length === 1 ? `You have disliked ${dislikedCandidates.length} politician.` :
+      `You have disliked ${dislikedCandidates.length} politicians.`
     )
   }
 
   const renderLikedStat = () => {
     return (
-      likedCandidates.length === 1 ? `You have liked ${likedCandidates.length} candidate.` :
-      `You have liked ${dislikedCandidates.length} candidates.`
+      likedCandidates.length === 1 ? `You have liked ${likedCandidates.length} politician.` :
+      `You have liked ${dislikedCandidates.length} politicians.`
     )
   }
 
   return(
     <View style={styles.container}>
       <View style={styles.logout}>
-        <TouchableOpacity navigation={navigation} onPress={clearUser}>
+        <TouchableOpacity style={{flexDirection: 'row'}} navigation={navigation} onPress={clearUser}>
           <Text style={styles.logoutText}>Logout</Text>
+          <FontAwesomeIcon icon={ faSignOutAlt } size={scale(20)} style={styles.icon} color='#E63946'/>
         </TouchableOpacity>
       </View>
       <Text style={styles.title}>{user.username}'s Profile</Text>
-      <View>
-        <Text>{renderLikedStat()}</Text>
-        <Text>{renderDislikedStat()}</Text>
+      <View style={styles.statContainer}>
+        <Text style={styles.activityHeading}>Activity</Text>
+        <Text style={styles.stat}>{renderLikedStat()}</Text>
+        <Text style={styles.stat}>{renderDislikedStat()}</Text>
       </View>
       <View style={styles.infoContainer}>
         <TouchableOpacity onPress={() => setIsLikedCollapsed(!isLikedCollapsed)}>
@@ -73,9 +75,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F1FAEE'
+    // alignContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: '#F1FAEE',
+    margin: scale(5)
   },
   infoContainer: {
     // borderStyle: 'solid',
@@ -90,6 +93,12 @@ const styles = StyleSheet.create({
     color: '#1D3557',
     textAlign: 'left'
   },
+  activityHeading: {
+    fontSize: scale(20),
+    fontWeight: 'bold',
+    color: '#1D3557',
+    textAlign: 'left'
+  },
   title: {
     fontSize: scale(28),
     color: '#1D3557',
@@ -98,14 +107,18 @@ const styles = StyleSheet.create({
   },
   logout: {
     alignSelf: 'flex-end',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
     margin: scale(20),
-    marginBottom: scale(100)
-    // marginTop: scale(-10)
+    marginBottom: scale(100),
+    marginTop: scale(-190),
   },
   logoutText: {
     color: '#E63946',
     fontSize: scale(20),
-    textAlign: 'right'
+    textAlign: 'right',
+    marginRight: scale(5)
   },
   headerRow: {
     fontSize: scale(17),
@@ -119,5 +132,20 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: scale(5)
+  },
+  stat: {
+    fontSize: scale(18),
+    // fontWeight: 'bold',
+    color: '#1D3557',
+    textAlign: 'left',
+    margin: scale(3)
+  },
+  statContainer: {
+    borderStyle: 'solid',
+    borderWidth: scale(2),
+    borderRadius: scale(5),
+    borderColor: '#457B9D',
+    padding: scale(10),
+    margin: scale(15)
   }
 })
