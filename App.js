@@ -47,8 +47,23 @@ export default function App({ navigation }) {
   const logout = () => {
     setUser({})
     AsyncStorage.removeItem('token')
-
   }
+
+  // const getLikedIds = (data) => {
+  //   const newLiked = []
+  //   data.likedCandidates.map(cand => {
+  //     [...newLiked, cand.cand_id]
+  //   })
+  //   setLikedCandidates(newLiked)
+  // }
+
+  // const getDislikedIds = (data) => {
+  //   const newDisliked = []
+  //   data.likedCandidates.map(cand => {
+  //     [...newDisliked, cand.cand_id]
+  //   })
+  //   setDislikedCandidates(newLiked)
+  // }
 
   const login = ({ username, password }) => {
     fetch(`${baseURL}/login`, {
@@ -66,10 +81,13 @@ export default function App({ navigation }) {
           AsyncStorage.setItem('token', data.token)
           setUser(data.user)
           setAlerts([])
-          console.log(user)
+          setLikedCandidates(data.liked)
+          setDislikedCandidates(data.disliked)
         }
       })
   }
+
+  console.log(user, likedCandidates, dislikedCandidates)
 
   return (
     <>
