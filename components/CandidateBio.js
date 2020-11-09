@@ -15,6 +15,8 @@ export default function CandidateBio({ id, setBioVisible }) {
   const [isElectionCollapsed, setIsElectionCollapsed] = useState(true)
 
   const baseURL = 'http://localhost:3000'
+  const [justLiked, setJustLiked] = useState(false)
+  const [justDisliked, setJustDisliked] = useState(false)
 
   useEffect(() => {
     fetch(`${baseURL}/candidates/bio/${id}`)

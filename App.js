@@ -45,8 +45,9 @@ export default function App({ navigation }) {
   }
 
   const logout = () => {
-    AsyncStorage.removeItem('token')
     setUser({})
+    AsyncStorage.removeItem('token')
+
   }
 
   const login = ({ username, password }) => {
