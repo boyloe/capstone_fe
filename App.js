@@ -57,13 +57,19 @@ export default function App({ navigation }) {
   //   setLikedCandidates(newLiked)
   // }
 
-  // const getDislikedIds = (data) => {
-  //   const newDisliked = []
-  //   data.likedCandidates.map(cand => {
-  //     [...newDisliked, cand.cand_id]
-  //   })
-  //   setDislikedCandidates(newLiked)
-  // }
+  const addLike = (likeinfo) => {
+    fetch(`${baseURL}/liked_candidates`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({likeinfo})
+    })
+      .then(response => response.json())
+      .then(data => {
+        setLikedCandidates([...likedCandidates, data])
+    })
+  }
 
   const login = ({ username, password }) => {
     fetch(`${baseURL}/login`, {
@@ -111,6 +117,7 @@ export default function App({ navigation }) {
         >
           {(props) => <Home
             user={user}
+            addLike={addLike}
             navigation={navigation}
             alerts={alerts}
             setUser={setUser}
@@ -129,6 +136,7 @@ export default function App({ navigation }) {
             user={user} 
             alerts={alerts}
             logout={logout}
+            addLike={addLike}
             signup={signup}
             setUser={setUser}
             setLikedCandidates={setLikedCandidates}

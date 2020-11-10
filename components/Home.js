@@ -15,7 +15,7 @@ import Profile from './Profile';
 
 const Tab = createBottomTabNavigator();
 
-export default function Home({ alerts, login, navigation, user, signup, setUser, setLikedCandidates, setDislikedCandidates, likedCandidates, dislikedCandidates }) {
+export default function Home({ addLike, alerts, login, navigation, user, signup, setUser, setLikedCandidates, setDislikedCandidates, likedCandidates, dislikedCandidates }) {
   const baseURL = 'http://localhost:3000'
 
 
@@ -63,19 +63,55 @@ export default function Home({ alerts, login, navigation, user, signup, setUser,
           </Tab.Screen>)
         :
         <><Tab.Screen name="Candidates"
-          component={ViewCandidates}
-          tabStyle={styles.tabBar}
-          options={{
-            tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}} />
+            tabStyle={styles.tabBar}
+            options={{
+              tabBarIcon: ({ focused }) => (
+              <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+              {(props) => <ViewCandidates
+                user={user}
+                addLike={addLike}
+                alerts={alerts}
+                setUser={setUser}
+                setLikedCandidates={setLikedCandidates}
+                setDislikedCandidates={setDislikedCandidates}
+                signup={signup}
+                login={login}
+                likedCandidates={likedCandidates}
+                dislikedCandidates={dislikedCandidates}
+                {...props} />}
+          </Tab.Screen>
         <Tab.Screen name="Officials"
-          component={ViewOfficials}
           options={{ tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon icon={ faFlagUsa } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}} />
+            <FontAwesomeIcon icon={ faFlagUsa } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+            {(props) => <ViewOfficials
+              user={user}
+              addLike={addLike}
+              alerts={alerts}
+              setUser={setUser}
+              setLikedCandidates={setLikedCandidates}
+              setDislikedCandidates={setDislikedCandidates}
+              signup={signup}
+              login={login}
+              likedCandidates={likedCandidates}
+              dislikedCandidates={dislikedCandidates}
+              {...props} />}
+        </Tab.Screen>
         <Tab.Screen name="Elections"
-          component={ViewElections}
           options={{ tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}} /></>}
+            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+               {(props) => <ViewElections
+              user={user}
+              addLike={addLike}
+              alerts={alerts}
+              setUser={setUser}
+              setLikedCandidates={setLikedCandidates}
+              setDislikedCandidates={setDislikedCandidates}
+              signup={signup}
+              login={login}
+              likedCandidates={likedCandidates}
+              dislikedCandidates={dislikedCandidates}
+              {...props} />}
+        </Tab.Screen></>}
       </Tab.Navigator>
   )
 }

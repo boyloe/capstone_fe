@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     fontSize: scale(30),
     fontWeight: 'bold',
     margin: scale(15),
+    marginLeft: scale(45),
     marginBottom: scale(60),
     color: '#1D3557',
     alignSelf: 'flex-start'
@@ -166,6 +167,7 @@ const styles = StyleSheet.create({
     },
     backgroundImage: {
       flex: 1,
+      width: '100%',
       resizeMode: "cover",
       justifyContent: "center"
     }
