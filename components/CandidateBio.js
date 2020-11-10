@@ -34,10 +34,12 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
 
   const handleLike = () => {
     addLike(id)
+    console.log('like handled')
   }
 
   const handleDislike = () => {
     addDislike(id)
+
   }
 
   const renderBio = (candidateInfo) => {
@@ -58,6 +60,7 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
             style={styles.thumbsup}
             onPress={(loadedAnimation) => {
               loadedAnimation = animation2.current.play()
+              handleLike()
             }}>
             <LottieView
               ref={animation2}
@@ -78,8 +81,6 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
               style={styles.lottieview}
             />
           </TouchableWithoutFeedback>
-          {/* <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsUp } size={scale(26)} color='#457B9D' onPress={handleLike}/>
-          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsDown } size={scale(26)} color='#457B9D' onPress={handleDislike}/> */}
         </View>
       <SafeAreaView>
         <ScrollView>
