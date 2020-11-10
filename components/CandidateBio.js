@@ -14,6 +14,7 @@ import Animation from 'lottie-react-native';
 export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
 
   const animation = useRef(null)
+  const animation2 = useRef(null)
 
   const [candidateInfo, setCandidateInfo] = useState({})
   const [isOfficeCollapsed, setIsOfficeCollapsed] = useState(true)
@@ -56,10 +57,10 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
           <TouchableWithoutFeedback
             style={styles.thumbsup}
             onPress={(loadedAnimation) => {
-              loadedAnimation = animation.current.play()
+              loadedAnimation = animation2.current.play()
             }}>
             <LottieView
-              ref={animation}
+              ref={animation2}
               source={require('../assets/thumbsup3.json')}
               loop={false}
               style={styles.lottieview}
