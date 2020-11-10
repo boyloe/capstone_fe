@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, StyleSheet, Text, Button } from 'react-native'
+import { View, TextInput, StyleSheet, Text, Button, ImageBackground } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -22,6 +22,8 @@ export default function CreateAccount({ signup, alerts, login }) {
     : signup(user)
   }
 
+  const image = { uri: "https://images.unsplash.com/photo-1515549832467-8783363e19b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1482&q=80" }
+
   const handleLoginForm = () => {
     setLoginScreen(!loginScreen)
   }
@@ -31,6 +33,7 @@ export default function CreateAccount({ signup, alerts, login }) {
 
   return(
     <View style={styles.container}>
+      <ImageBackground style= {styles.backgroundImage} source={image}>
       <View style={styles.form}>
       { loginScreen
         ? <Text style={styles.heading}>Sign Up</Text>
@@ -63,6 +66,7 @@ export default function CreateAccount({ signup, alerts, login }) {
             </TouchableOpacity>
           </View>}
       </View>
+      </ImageBackground>
     </View>
   )
 }
@@ -70,7 +74,6 @@ export default function CreateAccount({ signup, alerts, login }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#A8DADC',
     alignItems: 'center',
     justifyContent: 'space-around'
   },
@@ -160,5 +163,10 @@ const styles = StyleSheet.create({
       margin: scale(5),
       justifyContent: 'center',
       alignItems: 'center'
+    },
+    backgroundImage: {
+      flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center"
     }
 })
