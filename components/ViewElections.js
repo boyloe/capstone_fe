@@ -21,7 +21,7 @@ export default function ViewElections() {
 
   const renderItem = ({item}) => {
     return(
-      <Item item={item}/>
+      <Item key={item.id} item={item}/>
     )
   }
 
@@ -53,7 +53,7 @@ export default function ViewElections() {
           style={styles.list}
           extraData={electionList}
           data={electionList}
-          keyExtractor={(item, index) => {
+          keyExtractor={(item) => {
             return item.id;
           }}
           renderItem={renderItem}/>

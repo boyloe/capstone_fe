@@ -27,14 +27,13 @@ export default function ViewCandidates({ addLike, user }) {
   )
 
   const selectCandidate = (item) => {
-    console.log(item.candidateId)
     setCandidateId(item.candidateId)
     setBioVisible(true)
   }
 
   const renderItem = ({item}) => {
     return(
-      <Item item={item}/>
+      <Item key={item.id} item={item}/>
     )
   }
 
@@ -45,7 +44,6 @@ export default function ViewCandidates({ addLike, user }) {
       .then(response => response.json())
       .then(data => setCandidateList(data.candidateList.candidate))
   }
-  console.log(candidateList)
 
   return(
     <View style={styles.container}>
@@ -69,7 +67,7 @@ export default function ViewCandidates({ addLike, user }) {
           style={styles.list}
           extraData={candidateList}
           data={candidateList}
-          keyExtractor={(item, index) => {
+          keyExtractor={(item) => {
             return item.id;
           }}
           renderItem={renderItem}/>

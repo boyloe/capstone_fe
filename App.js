@@ -40,7 +40,6 @@ export default function App({ navigation }) {
           AsyncStorage.setItem('token', data.token)
           setUser(data.user)
           setAlerts([])
-          console.log(user)
         }
       })
   }
@@ -50,13 +49,6 @@ export default function App({ navigation }) {
     AsyncStorage.removeItem('token')
   }
 
-  // const getLikedIds = (data) => {
-  //   const newLiked = []
-  //   data.likedCandidates.map(cand => {
-  //     [...newLiked, cand.cand_id]
-  //   })
-  //   setLikedCandidates(newLiked)
-  // }
 
   const addLike = (id) => {
     let user_id = user.id

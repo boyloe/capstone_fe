@@ -28,16 +28,14 @@ export default function ViewOfficials({ navigation, addLike, user  }) {
   )
 
   const selectCandidate = (item) => {
-    console.log(item.candidateId)
     setCandidateId(item.candidateId)
     setBioVisible(true)
   }
 
-  console.log(candidateId, bioVisible)
 
   const renderItem = ({item}) => {
     return(
-      <Item item={item}/>
+      <Item key={item.id} item={item}/>
     )
   }
 
