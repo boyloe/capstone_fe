@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import Profile from './components/Profile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LottieView from 'lottie-react-native';
 
 const Stack = createStackNavigator();
 
@@ -60,7 +61,6 @@ export default function App({ navigation }) {
   const addLike = (id) => {
     let user_id = user.id
     let cand_id = id
-    console.log(user_id, cand_id)
     fetch(`${baseURL}/liked_candidates`, {
       method: 'POST',
       headers: {
@@ -69,10 +69,9 @@ export default function App({ navigation }) {
       body: JSON.stringify({ user_id, cand_id })
     })
       .then(response => response.json())
-      .then(console.log)
-      // .then(data => {
-      //   setLikedCandidates([...likedCandidates, data])
-    // })
+      .then(data => {
+        setLikedCandidates([...likedCandidates, data])
+    })
   }
 
   const login = ({ username, password }) => {
@@ -97,7 +96,7 @@ export default function App({ navigation }) {
       })
   }
 
-  console.log(user, likedCandidates, dislikedCandidates)
+  console.log(user, 'liked candidates', likedCandidates, 'disliked candidaes', dislikedCandidates)
 
   return (
     <>

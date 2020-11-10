@@ -1,13 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, StyleSheet, Text, Button, Image, SafeAreaView, ScrollView, Modal } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React, { Component, useState, useEffect, useRef } from 'react';
+import { View, TextInput, StyleSheet, Text, Button, Image, SafeAreaView, ScrollView, Animated, Modal } from 'react-native';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronLeft, faHome, faBriefcase, faVoteYea, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import Collapsible from 'react-native-collapsible';
+import LottieView from 'lottie-react-native';
+import Animation from 'lottie-react-native';
 
-export default function CandidateBio({ id, user, setBioVisible, addLike }) {
+
+
+export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
+
+  const animation = useRef(null)
 
   const [candidateInfo, setCandidateInfo] = useState({})
   const [isOfficeCollapsed, setIsOfficeCollapsed] = useState(true)
@@ -24,12 +30,13 @@ export default function CandidateBio({ id, user, setBioVisible, addLike }) {
       .then((results) => setCandidateInfo(results))
   }, [])
 
+
   const handleLike = () => {
     addLike(id)
   }
 
   const handleDislike = () => {
-
+    addDislike(id)
   }
 
   const renderBio = (candidateInfo) => {
@@ -46,8 +53,32 @@ export default function CandidateBio({ id, user, setBioVisible, addLike }) {
         : <Text>"No photo provided"</Text>}
         <Text style={styles.ballotName}>{candidateInfo.bio.candidate.firstName} {candidateInfo.bio.candidate.lastName}</Text>
         <View style={{flexDirection: 'row', justifyContent: 'center', margin: scale(8)}}>
-          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsUp } size={scale(26)} color='#457B9D' onPress={handleLike}/>
-          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsDown } size={scale(26)} color='#457B9D' onPress={handleDislike}/>
+          <TouchableWithoutFeedback
+            style={styles.thumbsup}
+            onPress={(loadedAnimation) => {
+              loadedAnimation = animation.current.play()
+            }}>
+            <LottieView
+              ref={animation}
+              source={require('../assets/thumbsup3.json')}
+              loop={false}
+              style={styles.lottieview}
+            />
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            style={styles.thumbsdown}
+            onPress={(loadedAnimation) => {
+              loadedAnimation = animation.current.play()
+            }}>
+            <LottieView
+              ref={animation}
+              source={require('../assets/thumbsup3.json')}
+              loop={false}
+              style={styles.lottieview}
+            />
+          </TouchableWithoutFeedback>
+          {/* <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsUp } size={scale(26)} color='#457B9D' onPress={handleLike}/>
+          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsDown } size={scale(26)} color='#457B9D' onPress={handleDislike}/> */}
         </View>
       <SafeAreaView>
         <ScrollView>
@@ -142,5 +173,20 @@ const styles = StyleSheet.create({
   },
   headerRow: {
     margin: scale(8)
+  },
+  thumbsup: {
+    minWidth: scale(90),
+    minHeight: scale(90),
+  },
+  thumbsdown: {
+    transform: [{ rotate: '180deg' }],
+    minWidth: scale(90),
+    minHeight: scale(90)
+  },
+  lottieview: {
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center'
   }
 });
