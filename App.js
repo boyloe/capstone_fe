@@ -57,18 +57,22 @@ export default function App({ navigation }) {
   //   setLikedCandidates(newLiked)
   // }
 
-  const addLike = (likeinfo) => {
+  const addLike = (id) => {
+    let user_id = user.id
+    let cand_id = id
+    console.log(user_id, cand_id)
     fetch(`${baseURL}/liked_candidates`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({likeinfo})
+      body: JSON.stringify({ user_id, cand_id })
     })
       .then(response => response.json())
-      .then(data => {
-        setLikedCandidates([...likedCandidates, data])
-    })
+      .then(console.log)
+      // .then(data => {
+      //   setLikedCandidates([...likedCandidates, data])
+    // })
   }
 
   const login = ({ username, password }) => {

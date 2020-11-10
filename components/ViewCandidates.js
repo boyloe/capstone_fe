@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import CandidateBio from './CandidateBio';
 
-export default function ViewCandidates() {
+export default function ViewCandidates({ addLike, user }) {
 
   const [zipCode5, setZipCode5] = useState()
   const [zipCode4, setZipCode4] = useState()
@@ -49,8 +49,9 @@ export default function ViewCandidates() {
 
   return(
     <View style={styles.container}>
-      {bioVisible && candidateId !==0 ? <CandidateBio id={candidateId} setBioVisible={setBioVisible}/> :
-      <><Text style={styles.heading}>Candidates</Text>
+      {bioVisible && candidateId !==0 
+      ? <CandidateBio id={candidateId} setBioVisible={setBioVisible} user={user} addLike={addLike}/> 
+      :<><Text style={styles.heading}>Candidates</Text>
       <Text style={styles.directions}>Enter zip code to see who's running for office:</Text>
       <View style={styles.zipContainer}>
         <TextInput style={styles.input} onChangeText={setZipCode5} value={zipCode5} placeholder={'5 Digit Zip'}/>

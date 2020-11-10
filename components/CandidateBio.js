@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronLeft, faHome, faBriefcase, faVoteYea, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import Collapsible from 'react-native-collapsible';
 
-export default function CandidateBio({ id, setBioVisible }) {
+export default function CandidateBio({ id, user, setBioVisible, addLike }) {
 
   const [candidateInfo, setCandidateInfo] = useState({})
   const [isOfficeCollapsed, setIsOfficeCollapsed] = useState(true)
@@ -24,7 +24,13 @@ export default function CandidateBio({ id, setBioVisible }) {
       .then((results) => setCandidateInfo(results))
   }, [])
 
-  console.log(candidateInfo)
+  const handleLike = () => {
+    addLike(id)
+  }
+
+  const handleDislike = () => {
+
+  }
 
   const renderBio = (candidateInfo) => {
     return(
@@ -35,12 +41,13 @@ export default function CandidateBio({ id, setBioVisible }) {
         accessibilityLabel="Press to go back.">
         <FontAwesomeIcon icon={ faChevronLeft } size={scale(22)} color='#1D3557'/>
       </TouchableOpacity>
-      {candidateInfo.bio.candidate.photo ? 
-        <Image style={styles.headshot} resizeMode='contain' source={{ uri: candidateInfo.bio.candidate.photo ,}}/> : <Text>"No photo provided"</Text>}
+      {candidateInfo.bio.candidate.photo 
+        ? <Image style={styles.headshot} resizeMode='contain' source={{ uri: candidateInfo.bio.candidate.photo ,}}/> 
+        : <Text>"No photo provided"</Text>}
         <Text style={styles.ballotName}>{candidateInfo.bio.candidate.firstName} {candidateInfo.bio.candidate.lastName}</Text>
         <View style={{flexDirection: 'row', justifyContent: 'center', margin: scale(8)}}>
-          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsUp } size={scale(26)} color='#457B9D'/>
-          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsDown } size={scale(26)} color='#457B9D'/>
+          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsUp } size={scale(26)} color='#457B9D' onPress={handleLike}/>
+          <FontAwesomeIcon style={{margin: scale(10), marginHorizontal: scale(25)}} icon={ faThumbsDown } size={scale(26)} color='#457B9D' onPress={handleDislike}/>
         </View>
       <SafeAreaView>
         <ScrollView>
