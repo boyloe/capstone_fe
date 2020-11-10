@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { View, TextInput, StyleSheet, Text, Button } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faUser, faUnlockAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default function CreateAccount({ signup, alerts, login }) {
   const baseURL = 'http://localhost:3000'
@@ -29,14 +31,17 @@ export default function CreateAccount({ signup, alerts, login }) {
 
   return(
     <View style={styles.container}>
-      { loginScreen ? <Text style={styles.heading}>Create an Account</Text> : <Text style={styles.heading}>Log In</Text>}
-        <View style={{flexDirection: 'row', alignItems: 'center', margin: scale(8)}}>
-          <Text style={styles.labels}>Username:</Text>
-          <TextInput style={styles.input} onChangeText={setUserName} value={username}/>
+      <View style={styles.form}>
+      { loginScreen
+        ? <Text style={styles.heading}>Sign Up</Text>
+        : <Text style={styles.heading}>Log In</Text>}
+        <View style={styles.inputView}>
+          <FontAwesomeIcon icon={ faUser } size={scale(20)} style={styles.icon} color='#1D3557'/>
+          <TextInput style={styles.input} placeholder='Username' placeholderTextColor='#457B9D' onChangeText={setUserName} value={username}/>
         </View>
-        <View style={{flexDirection: 'row', alignItems: 'center', margin: scale(8)}}>
-          <Text style={styles.labels}>Password:</Text>
-          <TextInput style={styles.input} onChangeText={setPassword} value={password} secureTextEntry={true}/>
+        <View style={styles.inputView}>
+          <FontAwesomeIcon icon={ faUnlockAlt } size={scale(20)} style={styles.icon} color='#1D3557'/>
+          <TextInput style={styles.input} onChangeText={setPassword} value={password} placeholderTextColor='#457B9D' placeholder='Password' secureTextEntry={true}/>
         </View>
         {alerts ? showAlerts() : null}
         <TouchableOpacity
@@ -46,14 +51,18 @@ export default function CreateAccount({ signup, alerts, login }) {
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
         { loginScreen ? 
-        <><Text style={styles.labels}>Already registered?</Text>
-        <TouchableOpacity style={styles.switchButton} onPress={handleLoginForm}>
-          <Text style={styles.switchButtonText}>Log In</Text>
-        </TouchableOpacity></>
-        : <><Text style={styles.labels}>Not Registered?</Text>
-        <TouchableOpacity style={styles.switchButton} onPress={handleLoginForm}>
-          <Text style={styles.switchButtonText}>Create an Account</Text>
-          </TouchableOpacity></>}
+        <View style={styles.question}>
+          <Text style={styles.labels}>Already registered?</Text>
+          <TouchableOpacity style={styles.switchButton} onPress={handleLoginForm}>
+            <Text style={styles.switchButtonText}>Log In</Text>
+          </TouchableOpacity></View>
+        : <View style={styles.question}>
+            <Text style={styles.labels}>Not Registered?</Text>
+            <TouchableOpacity style={styles.switchButton} onPress={handleLoginForm}>
+              <Text style={styles.switchButtonText}>Create an Account</Text>
+            </TouchableOpacity>
+          </View>}
+      </View>
     </View>
   )
 }
@@ -61,64 +70,95 @@ export default function CreateAccount({ signup, alerts, login }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1FAEE',
+    backgroundColor: '#A8DADC',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-around'
   },
   input: {
     borderStyle: 'solid',
-    borderWidth:  scale(1),
+    borderBottomWidth: scale(1),
+    borderBottomColor: '#1D3557'
   },
   heading: {
     fontSize: scale(30),
     fontWeight: 'bold',
     margin: scale(15),
+    marginBottom: scale(60),
     color: '#1D3557',
-    textAlign: 'center'
+    alignSelf: 'flex-start'
   },
   input: {
     borderStyle: 'solid',
-    borderColor: '#1D3557',
-    borderWidth: scale(1),
-    minWidth: scale(100),
+    borderColor: '#A8DADC',
+    minWidth: scale(200),
     marginLeft: scale(5),
+    margin: scale(5),
     borderRadius: scale(5),
     minHeight: scale(20),
-    fontSize: scale(15),
-    textAlign: 'center',
-    padding: scale(4),
-    color: '#1D3557'
+    fontSize: scale(20),
+    textAlign: 'left',
+    padding: scale(5),
+    color: '#1D3557',
     },
     button: {
       padding: scale(5),
       backgroundColor:'#1D3557',
       borderRadius: scale(5),
       margin: scale(15),
+      marginTop: scale(50),
+      minWidth: scale(250),
+      height: scale(50),
+      justifyContent: 'center'
     },
     switchButton: {
       padding: scale(8),
-      backgroundColor:'#F1FAEE',
+      // backgroundColor:'#F1FAEE',
       borderRadius: scale(5),
-      margin: scale(10)
+      // margin: scale(10)
     },
     buttonText: {
       color: '#F1FAEE',
       fontSize: scale(20),
-      padding: scale(1)
+      padding: scale(1),
+      textAlign: 'center'
     },
     switchButtonText: {
       color: '#457B9D',
       fontSize: scale(15),
       fontWeight: 'bold',
-      fontStyle: 'italic'
+      textAlign: 'center'
     },
     labels: {
       fontSize: scale(20),
       color: '#1D3557'
     },
-      alert: {
-        color: '#E63946',
-        fontSize: scale(15),
-        margin: scale(10)
-      }
+    alert: {
+      color: '#E63946',
+      fontSize: scale(15),
+      margin: scale(10)
+    },
+    form: {
+      alignItems: 'center',
+      // justifyContent: 'center',
+      // margin: scale(5),
+      // shadowOffset:{  width: 10,  height: 10,  },
+      // shadowColor: '#1D3557',
+      // shadowOpacity: scale(.5),
+      margin: scale(8)
+    },
+    icon: {
+      margin: scale(8)
+    },
+    inputView: {
+      flexDirection: 'row', 
+      alignItems: 'center', 
+      margin: scale(8),
+      borderBottomColor: '#1D3557',
+      borderBottomWidth: scale(1),
+    },
+    question: {
+      margin: scale(5),
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
 })

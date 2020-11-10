@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     color: '#1D3557'
   },
   directions: {
-    fontSize: scale(15)
+    fontSize: scale(15),
+    color: '#1D3557'
   }
 })
