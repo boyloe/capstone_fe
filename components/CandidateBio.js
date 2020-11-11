@@ -144,9 +144,9 @@ const styles = StyleSheet.create({
     width: scale(110),
     height: scale(135),
     margin: scale(8),
-    borderColor: '#457B9D',
+    borderColor: '#1D3557',
     borderWidth: scale(4),
-    borderRadius: scale(5)
+    borderRadius: scale(5),
   },
   infoContainer: {
     flex: 1,

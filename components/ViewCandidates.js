@@ -97,13 +97,14 @@ const styles = StyleSheet.create({
     color: '#1D3557'
     },
   item: {
-    borderStyle: 'solid',
-    borderWidth: scale(1),
-    borderRadius: scale(5),
-    borderColor: '#457B9D',
-    padding: scale(10),
+    borderRadius: scale(8),
+    backgroundColor: '#FFFFFF',
+    padding: scale(15),
     margin: scale(5),
-    alignItems: 'center'
+    alignItems: 'center',
+    shadowOffset:{  width: 2,  height: 2,  },
+    shadowColor: '#1D3557',
+    shadowOpacity: scale(.4),
   },
   heading: {
     fontSize: scale(25),
@@ -134,11 +135,11 @@ const styles = StyleSheet.create({
     padding: scale(10)
   },
   ballotName: {
-    fontSize: scale(15),
-    fontWeight: 'bold',
-    padding: scale(3),
-    color: '#1D3557',
-    textAlign: 'center'
+      fontSize: scale(15),
+      fontWeight: 'bold',
+      padding: scale(3),
+      color: '#1D3557',
+      textAlign: 'center'
   },
   info: {
     fontSize: scale(12),
