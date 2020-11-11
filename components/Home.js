@@ -22,7 +22,7 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <FontAwesomeIcon icon={ faUserCircle } style={{margin: scale(18)}} size={scale(28)} color='#F1FAEE' onPress={() => navigation.navigate('Profile')} />
+        <FontAwesomeIcon icon={ faUserCircle } style={{margin: scale(18)}} size={scale(28)} color='#FFFFFF' onPress={() => navigation.navigate('Profile')} />
       ),
     });
   }, [navigation]);
@@ -31,7 +31,7 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
       <Tab.Navigator tabBarOptions={{
           style: styles.container,
           activeTintColor: '#A8DADC',
-          inactiveTintColor: '#F1FAEE',
+          inactiveTintColor: '#FFFFFF',
           activeBackgroundColor: '#1D3557',
           inactiveBackgroundColor: '#1D3557',
           labelStyle: {
@@ -48,7 +48,7 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
           tabStyle={styles.tabBar}
           options={{
           tabBarIcon: ({ focused }) => (
-          <FontAwesomeIcon icon={ faSignInAlt } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+          <FontAwesomeIcon icon={ faSignInAlt } size={scale(22)} color={ focused ? '#A8DADC': '#FFFFFF'}/>)}}>
             {(props) => <CreateAccount
             user={user}
             alerts={alerts}
@@ -66,7 +66,7 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
             tabStyle={styles.tabBar}
             options={{
               tabBarIcon: ({ focused }) => (
-              <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+              <FontAwesomeIcon icon={ faBullhorn } size={scale(22)} color={ focused ? '#A8DADC': '#FFFFFF'}/>)}}>
               {(props) => <ViewCandidates
                 user={user}
                 addLike={addLike}
@@ -82,7 +82,7 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
           </Tab.Screen>
         <Tab.Screen name="Officials"
           options={{ tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon icon={ faFlagUsa } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+            <FontAwesomeIcon icon={ faFlagUsa } size={scale(22)} color={ focused ? '#A8DADC': '#FFFFFF'}/>)}}>
             {(props) => <ViewOfficials
               user={user}
               addLike={addLike}
@@ -98,7 +98,7 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
         </Tab.Screen>
         <Tab.Screen name="Elections"
           options={{ tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={ focused ? '#A8DADC': '#F1FAEE'}/>)}}>
+            <FontAwesomeIcon icon={ faPersonBooth } size={scale(22)} color={ focused ? '#A8DADC': '#FFFFFF'}/>)}}>
                {(props) => <ViewElections
               user={user}
               addLike={addLike}

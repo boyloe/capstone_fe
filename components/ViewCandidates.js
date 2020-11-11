@@ -79,7 +79,7 @@ export default function ViewCandidates({ addLike, user }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1FAEE',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     margin: scale(2)
   },
   buttonText: {
-    color: '#F1FAEE',
+    color: '#FFFFFF',
     fontSize: scale(15),
     padding: scale(1)
   },

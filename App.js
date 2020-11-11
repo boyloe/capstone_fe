@@ -12,9 +12,10 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import Profile from './components/Profile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LottieView from 'lottie-react-native';
+import { LogBox } from 'react-native';
 
 const Stack = createStackNavigator();
-
+LogBox.ignoreAllLogs();
 
 export default function App({ navigation }) {
 

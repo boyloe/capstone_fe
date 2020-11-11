@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import CandidateBio from './CandidateBio';
 
+
 export default function ViewOfficials({ navigation, addLike, user  }) {
 
   const [zipCode5, setZipCode5] = useState()
@@ -81,7 +82,7 @@ export default function ViewOfficials({ navigation, addLike, user  }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1FAEE',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -99,13 +100,16 @@ const styles = StyleSheet.create({
     color: '#1D3557'
     },
   item: {
-    borderStyle: 'solid',
-    borderWidth: scale(1),
-    borderRadius: scale(5),
-    borderColor: '#457B9D',
+    // borderStyle: 'solid',
+    // borderWidth: scale(1),
+    // borderRadius: scale(5),
+    // borderColor: '#457B9D',
     padding: scale(10),
     margin: scale(5),
-    alignItems: 'center'
+    alignItems: 'center',
+    shadowOffset:{  width: 10,  height: 10,  },
+    shadowColor: '#1D3557',
+    shadowOpacity: scale(.5),
   },
   heading: {
     fontSize: scale(25),
@@ -119,7 +123,7 @@ const styles = StyleSheet.create({
     borderRadius: scale(5)
   },
   buttonText: {
-    color: '#F1FAEE',
+    color: '#FFFFFF',
     fontSize: scale(15),
     padding: scale(1)
   },
@@ -143,10 +147,13 @@ const styles = StyleSheet.create({
   },
   info: {
     fontSize: scale(12),
-    color: '#1D3557'
+    color: '#1D3557',
   },
   directions: {
     fontSize: scale(15),
     color: '#1D3557'
+  },
+  list: {
+
   }
 })

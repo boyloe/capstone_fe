@@ -65,7 +65,7 @@ export default function ViewElections() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1FAEE',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     borderRadius: scale(5)
   },
   buttonText: {
-    color: '#F1FAEE',
+    color: '#FFFFFF',
     fontSize: scale(15),
     padding: scale(1)
   },

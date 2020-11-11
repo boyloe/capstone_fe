@@ -116,12 +116,10 @@ const styles = StyleSheet.create({
     },
     switchButton: {
       padding: scale(8),
-      // backgroundColor:'#F1FAEE',
       borderRadius: scale(5),
-      // margin: scale(10)
     },
     buttonText: {
-      color: '#F1FAEE',
+      color: '#FFFFFF',
       fontSize: scale(20),
       padding: scale(1),
       textAlign: 'center'
