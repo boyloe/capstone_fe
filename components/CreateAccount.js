@@ -112,7 +112,10 @@ const styles = StyleSheet.create({
       marginTop: scale(50),
       minWidth: scale(250),
       height: scale(50),
-      justifyContent: 'center'
+      justifyContent: 'center',
+      shadowOffset:{  width: 2,  height: 2,  },
+      shadowColor: '#1D3557',
+      shadowOpacity: scale(.4),
     },
     switchButton: {
       padding: scale(8),
@@ -149,7 +152,10 @@ const styles = StyleSheet.create({
       margin: scale(8)
     },
     icon: {
-      margin: scale(8)
+      margin: scale(8),
+      shadowOffset:{  width: 2,  height: 2,  },
+      shadowColor: '#1D3557',
+      shadowOpacity: scale(.4),
     },
     inputView: {
       flexDirection: 'row', 
