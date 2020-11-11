@@ -31,7 +31,7 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
   const renderLikedStat = () => {
     return (
       likedCandidates.length === 1 ? `You have liked ${likedCandidates.length} politician.` :
-      `You have liked ${dislikedCandidates.length} politicians.`
+      `You have liked ${likedCandidates.length} politicians.`
     )
   }
 
@@ -40,7 +40,7 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
       <View style={styles.logout}>
         <TouchableOpacity style={{flexDirection: 'row'}} navigation={navigation} onPress={clearUser}>
           <Text style={styles.logoutText}>Logout </Text>
-          <FontAwesomeIcon icon={ faSignOutAlt } size={scale(20)} style={styles.icon} color='#E63946'/>
+          <FontAwesomeIcon icon={ faSignOutAlt } size={scale(20)} style={styles.icon} color='#FFFFFF'/>
         </TouchableOpacity>
       </View>
       {/* <LottieView
@@ -53,9 +53,15 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
       <Text style={styles.title}>{user.username}'s Profile</Text>
       <View style={styles.bottom}>
         <View style={styles.statContainer}>
-          <Text style={styles.activityHeading}>Activity</Text>
-          <Text style={styles.stat}>{renderLikedStat()}</Text>
-          <Text style={styles.stat}>{renderDislikedStat()}</Text>
+          <Text style={styles.activityHeading}>Activity:</Text>
+            <View style={styles.stat}>
+              <Text style={styles.number}>{likedCandidates.length}</Text>
+              <Text style={styles.likes}>Likes</Text>
+          </View>
+          <View style={styles.stat}>
+            <Text style={styles.number}>{dislikedCandidates.length}</Text>
+            <Text style={styles.likes}>Dislikes</Text>
+          </View>
         </View>
         <View style={styles.infoContainer}>
           <TouchableOpacity onPress={() => setIsLikedCollapsed(!isLikedCollapsed)}>
@@ -93,15 +99,7 @@ const styles = StyleSheet.create({
   bottom: {
     backgroundColor: '#FFFFFF',
     height: scale(400),
-    borderRadius: scale(20)
-  },
-  infoContainer: {
-    backgroundColor: '#FFFFFF',
-    // borderStyle: 'solid',
-    // borderWidth: scale(1)
-  },
-  back: {
-    color: '#1D3557'
+    borderRadius: scale(30),
   },
   heading: {
     fontSize: scale(20),
@@ -142,29 +140,49 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     color: '#457B9D',
     textAlign: 'left',
-    alignContent: 'center'
+    alignContent: 'center',
   },
   icon: {
     marginRight: scale(5)
   },
-  stat: {
-    fontSize: scale(18),
-    // fontWeight: 'bold',
-    color: '#1D3557',
-    textAlign: 'left',
-    margin: scale(3)
-  },
   statContainer: {
-    borderStyle: 'solid',
-    borderWidth: scale(2),
-    borderRadius: scale(8),
-    borderColor: '#457B9D',
     padding: scale(10),
-    margin: scale(15)
+    margin: scale(10),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    // borderStyle: 'solid',
+    // borderWidth: scale(2),
+    // borderRadius: scale(8),
+    // borderColor: '#457B9D',
+
   }, 
+
   profilepic: {
     width: scale(70),
     alignSelf: 'center',
-    
+  },
+  stat: {
+    width: scale(90),
+    height: scale(90),
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#A8DADC',
+    margin: scale(5),
+    borderRadius: scale(50),
+    shadowOffset:{  width: 2,  height: 2,  },
+    shadowColor: '#1D3557',
+    shadowOpacity: scale(.4),
+  },
+  number: {
+    color: '#1D3557',
+    fontSize: scale(40),
+    fontWeight: 'bold',
+  },
+  likes: {
+    color: '#1D3557',
+    fontSize: scale(15),
+    // fontWeight: 'bold'
   }
 })
