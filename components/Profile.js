@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Link } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faChevronCircleDown, faChevronDown, faChevronRight, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faChevronCircleDown, faChevronDown, faChevronRight, faSignOutAlt, faPhoneAlt, faEnvelope, faHome } from '@fortawesome/free-solid-svg-icons'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Collapsible from 'react-native-collapsible';
@@ -72,7 +72,23 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
           </View>
           </TouchableOpacity>
           <Collapsible collapsed={isLikedCollapsed}>
-            <Text>Jared Polis</Text>
+            <View style={styles.likedSection}>
+              <View style={styles.likedItem}>
+                <Text style={styles.name}>Jared Polis</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <FontAwesomeIcon icon={ faPhoneAlt } size={scale(12)} style={styles.icon} color='#457B9D'/>
+                  <Text style={styles.info}>303-866-2471</Text>
+                </View>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <FontAwesomeIcon icon={ faEnvelope } size={scale(12)} style={styles.icon} color='#457B9D'/>
+                  <Text style={styles.info}>Governorpolis@state.co.us</Text>
+                </View>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <FontAwesomeIcon icon={ faHome} size={scale(12)} style={styles.icon} color='#457B9D'/>
+                  <Text style={styles.info}>State Capitol Bldg - 200 E. Colfax Ave., Rm. 136, Denver, CO 80203</Text>
+                </View>
+                </View> 
+            </View>
           </Collapsible>
           <TouchableOpacity onPress={() => setIsDislikedCollapsed(!isDislikedCollapsed)}>
           <View style={styles.headerRow} flexDirection='row'>
@@ -83,7 +99,7 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
           </View>
           </TouchableOpacity>
           <Collapsible collapsed={isDislikedCollapsed}>
-            <Text>Render liked politicians here</Text>
+            <Text>Nothing yet!</Text>
           </Collapsible>
       </View>
       </View>
@@ -155,11 +171,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    // borderStyle: 'solid',
-    // borderWidth: scale(2),
-    // borderRadius: scale(8),
-    // borderColor: '#457B9D',
-
   }, 
 
   profilepic: {
@@ -188,5 +199,35 @@ const styles = StyleSheet.create({
     color: '#1D3557',
     fontSize: scale(15),
     // fontWeight: 'bold'
+  },
+  likedItem: { 
+    margin: scale(10),
+    borderRadius: scale(5),
+    shadowOffset:{  width: 2,  height: 2,  },
+    shadowColor: '#1D3557',
+    shadowOpacity: scale(.4),
+    backgroundColor: '#FFFFFF',
+    width: scale(250),
+    padding: scale(10),
+  },
+  likedSection: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center'
+  },
+  name: {
+    fontSize: scale(15),
+    color: '#1D3557',
+    fontWeight: 'bold',
+    marginBottom: scale(5)
+  },
+  // item: {
+  //   fontSize: scale(15),
+  //   color: '#1D3557',
+  // },
+  info: {
+    fontSize: scale(12),
+    color: '#1D3557',
+    margin: scale(2)
   }
 })

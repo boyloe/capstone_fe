@@ -8,11 +8,11 @@ export default function ProfileAnimation(){
 
   return(
     <LottieView
-    source={require('../assets/profile.json')}
+    source={require('../assets/loading.json')}
+    autoPlay
     loop={false}
-    autoplay={true}
     style={styles.profilepic}
-  />
+/>
   )
 }
 
