@@ -4,7 +4,7 @@ import { View, TextInput, StyleSheet, Text, Button, Image, SafeAreaView, ScrollV
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faChevronLeft, faHome, faBriefcase, faVoteYea, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faHome, faBriefcase, faVoteYea, faThumbsDown, faThumbsUp, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import Collapsible from 'react-native-collapsible';
 import LottieView from 'lottie-react-native';
 
@@ -86,7 +86,15 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
         <ScrollView>
       {candidateInfo.bio.office ? 
         <>
-        <TouchableOpacity onPress={() => setIsOfficeCollapsed(!isOfficeCollapsed)}><View style={styles.headerRow} flexDirection='row'><FontAwesomeIcon icon={ faBriefcase } size={scale(15)} color='#1D3557'/><Text style={styles.heading}>  Office Information</Text></View></TouchableOpacity>
+        <TouchableOpacity onPress={() => setIsOfficeCollapsed(!isOfficeCollapsed)}>
+          <View style={styles.headerRow} flexDirection='row'>
+            <FontAwesomeIcon icon={ faBriefcase } size={scale(15)} color='#1D3557'/>
+            <Text style={styles.heading}>  Office Information </Text>
+            {isOfficeCollapsed 
+            ? <FontAwesomeIcon icon={ faChevronRight } size={scale(12)} style={styles.icon} color='#457B9D'/>
+            : <FontAwesomeIcon icon={ faChevronDown } size={scale(12)} style={styles.icon} color='#457B9D'/>}
+          </View>
+        </TouchableOpacity>
           <Collapsible collapsed={isOfficeCollapsed}>
             <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Title:</Text><Text style={styles.info}> {candidateInfo.bio.office.title} - {candidateInfo.bio.office.type} </Text></View>
             <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>District:</Text><Text style={styles.info}> {candidateInfo.bio.office.district} </Text></View>
@@ -98,7 +106,15 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
        : null }
       {candidateInfo.bio.election ?
           <>
-            <TouchableOpacity onPress={() => setIsElectionCollapsed(!isElectionCollapsed)}><View flexDirection='row' style={styles.headerRow}><FontAwesomeIcon icon={ faVoteYea } size={scale(16)} color='#1D3557'/><Text style={styles.heading}>  Election Information</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={() => setIsElectionCollapsed(!isElectionCollapsed)}>
+              <View flexDirection='row' style={styles.headerRow}>
+                <FontAwesomeIcon icon={ faVoteYea } size={scale(16)} color='#1D3557'/>
+                <Text style={styles.heading}>  Election Information </Text>
+                {isElectionCollapsed 
+            ? <FontAwesomeIcon icon={ faChevronRight } size={scale(12)} style={styles.icon} color='#457B9D'/>
+            : <FontAwesomeIcon icon={ faChevronDown } size={scale(12)} style={styles.icon} color='#457B9D'/>}
+              </View>
+            </TouchableOpacity>
               <Collapsible collapsed={isElectionCollapsed}>
               <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Office:</Text><Text style={styles.info}>{candidateInfo.bio.election.office} </Text></View>
               <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Party:</Text><Text style={styles.info}>{candidateInfo.bio.election.parties} </Text></View>
@@ -106,7 +122,15 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
             </Collapsible>
           </>
       : null }
-      <TouchableOpacity onPress={() => setIsPersonalCollapsed(!isPersonalCollapsed)}><View flexDirection='row' style={styles.headerRow}><FontAwesomeIcon icon={ faHome } size={scale(16)} color='#1D3557'/><Text style={styles.heading}>  Personal Information</Text></View></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIsPersonalCollapsed(!isPersonalCollapsed)}>
+        <View flexDirection='row' style={styles.headerRow}>
+          <FontAwesomeIcon icon={ faHome } size={scale(16)} color='#1D3557'/>
+          <Text style={styles.heading}>  Personal Information </Text>
+          {isPersonalCollapsed 
+            ? <FontAwesomeIcon icon={ faChevronRight } size={scale(12)} style={styles.icon} color='#457B9D'/>
+            : <FontAwesomeIcon icon={ faChevronDown } size={scale(12)} style={styles.icon} color='#457B9D'/>}
+        </View>
+      </TouchableOpacity>
         <Collapsible collapsed={isPersonalCollapsed}>
           <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Birthdate:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.birthDate}</Text></View>
           <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Family:</Text><Text style={styles.info}> {candidateInfo.bio.candidate.family}</Text></View>
@@ -181,7 +205,8 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
   headerRow: {
-    margin: scale(8)
+    margin: scale(8),
+    alignItems: 'center',
   },
   thumbsup: {
     minWidth: scale(90),
