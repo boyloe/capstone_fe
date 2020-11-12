@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faChevronCircleDown, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faChevronCircleDown, faChevronDown, faChevronRight, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Collapsible from 'react-native-collapsible';
@@ -66,7 +66,9 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
         <View style={styles.infoContainer}>
           <TouchableOpacity onPress={() => setIsLikedCollapsed(!isLikedCollapsed)}>
           <View style={styles.headerRow} flexDirection='row'>
-            <FontAwesomeIcon icon={ faChevronCircleDown } size={scale(20)} style={styles.icon} color='#457B9D'/>
+            {isLikedCollapsed 
+            ? <FontAwesomeIcon icon={ faChevronRight } size={scale(20)} style={styles.icon} color='#457B9D'/>
+            : <FontAwesomeIcon icon={ faChevronDown } size={scale(20)} style={styles.icon} color='#457B9D'/>}
             <Text style={styles.heading}> Liked Politicians</Text>
           </View>
           </TouchableOpacity>
@@ -75,7 +77,9 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
           </Collapsible>
           <TouchableOpacity onPress={() => setIsDislikedCollapsed(!isDislikedCollapsed)}>
           <View style={styles.headerRow} flexDirection='row'>
-            <FontAwesomeIcon icon={ faChevronCircleDown } style={styles.icon} size={scale(20)} color='#457B9D'/>
+          {isDislikedCollapsed 
+            ? <FontAwesomeIcon icon={ faChevronRight } size={scale(20)} style={styles.icon} color='#457B9D'/>
+            : <FontAwesomeIcon icon={ faChevronDown } size={scale(20)} style={styles.icon} color='#457B9D'/>}
             <Text style={styles.heading}>  Disliked Politicians</Text>
           </View>
           </TouchableOpacity>
@@ -137,6 +141,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding: scale(3),
     margin: scale(5),
+    marginLeft: scale(10),
     flexDirection: 'row',
     color: '#457B9D',
     textAlign: 'left',
