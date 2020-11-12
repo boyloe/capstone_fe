@@ -1,16 +1,17 @@
-# Right Foot
+# SwingVote
 
-An app app to help you start your day off on the right foot. 
+An app to educate users on who is making policy decisions that affect their lives, and encourages them to engage in grassroots advocacy.
 
 # Table Of Contents 
-- [Description](https://github.com/KelsCree/morning-peace-fe#description)
-- [How It Works](https://github.com/KelsCree/morning-peace-fe#how-it-works)
-- [Example Code](https://github.com/KelsCree/morning-peace-fe#example-code)
-- [Technology Used](https://github.com/KelsCree/morning-peace-fe#technology-used)
-- [Main Features](https://github.com/KelsCree/morning-peace-fe#main-features)
-- [Features in Progress](https://github.com/KelsCree/morning-peace-fe#features-in-progress)
-- [Contact Information](https://github.com/KelsCree/morning-peace-fe#contact-information)
-- [Link to Backend Repo](https://github.com/KelsCree/morning-peace-fe#link-to-backend-repo)
+- [Description](https://github.com/KelsCree/capstone-fe#description)
+- [How It Works](https://github.com/KelsCree/capstone-fe#how-it-works)
+- [Example Code](https://github.com/KelsCree/capstone-fe#example-code)
+- [Technology Used](https://github.com/KelsCree/capstone-fe#technology-used)
+- [Main Features](https://github.com/KelsCree/capstone-fe#main-features)
+- [Features in Progress](https://github.com/KelsCree/capstone-fe#features-in-progress)
+- [Challenges](https://github.com/KelsCree/capstone-be#features-in-progress)
+- [Contact Information](https://github.com/KelsCree/capstone-fe#contact-information)
+- [Link to Backend Repo](https://github.com/KelsCree/capstone-fe#link-to-backend-repo)
 
 ## Description
 
@@ -18,7 +19,7 @@ SwingVote is a mobile application that helps to bridge the common knowledge gap 
 
 ## How It Works
 
-[Right Foot](https://youtu.be/nWK9kczYeVc)
+[SwingVote Video Demo](https://youtu.be/5Yb4LVCDGtM)
 
 ## Example Code 
 ```
@@ -65,9 +66,12 @@ SwingVote is a mobile application that helps to bridge the common knowledge gap 
 
 ## Technology Used
 
+  The app is currently only built for and tested with an iOS device (iPhone 12 Pro Max) using an iOS Expo emulator.
+
+- Javascript
 - React Native
 - Ruby on Rails
-- SmartVote API
+- [SmartVote API](https://votesmart.org/share/api#.X616OJNKii4)
 - Bcrypt
 - Expo
 - Lottie
@@ -85,6 +89,12 @@ SwingVote is a mobile application that helps to bridge the common knowledge gap 
 
 - Plans to build in additional functionality for browsing through candidates by name and including vote history for officials
 - Plans to deploy the app using firebase and heroku
+
+## Challenges
+
+This was my first attempt building a mobile app in React Native. I had expected the process to be very similar to regular React, but there were definitely some big differences including the types of components you can use and the lack of actual CSS. However, after I got the hang of it, I ended up preferring mobile development and using Javascript for styling. 
+
+Another challenge I faced was finding a reliable set of data to work with. There are quite a few government/political APIs out there, but they all contain varying amounts of useful information. VoteSmart ended up meeting most of my needs, and although it did cost a small fee, it went to a good cause. There was a Ruby gem API wrapper available that I incorporated, which made the fetch calls from my backend much simpler. 
 
 ## Contact Information
 

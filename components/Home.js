@@ -36,7 +36,8 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
           inactiveBackgroundColor: '#1D3557',
           labelStyle: {
             fontSize: scale(15),
-            padding: scale(3)
+            paddingBottom: scale(6),
+
           },
           style: {
             height: scale(85)
@@ -45,10 +46,10 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
 
         { !user.username ? 
           (<Tab.Screen name="Sign in to get started"
-          tabStyle={styles.tabBar}
+          tabStyle={styles.login}
           options={{
           tabBarIcon: ({ focused }) => (
-          <FontAwesomeIcon icon={ faSignInAlt } size={scale(22)} color={ focused ? '#A8DADC': '#FFFFFF'}/>)}}>
+          <FontAwesomeIcon icon={ faSignInAlt } size={scale(22)} style={styles.icon} color={ focused ? '#A8DADC': '#FFFFFF'}/>)}}>
             {(props) => <CreateAccount
             user={user}
             alerts={alerts}
@@ -118,7 +119,14 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    padding: scale(3)
+  },
+  icon: {
+    // margin: scale(-1)
+  },
+  login: {
+    paddingBottom: scale(5)
   }
 
-});
+})
