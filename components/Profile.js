@@ -43,13 +43,12 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
           <FontAwesomeIcon icon={ faSignOutAlt } size={scale(20)} style={styles.icon} color='#FFFFFF'/>
         </TouchableOpacity>
       </View>
-      {/* <LottieView
-        source={require('../assets/profile2.json')}
-        loop={false}
-        autoplay={true}
-        style={styles.profilepic}
-      /> */}
-      <ProfileAnimation/>
+        <LottieView
+            source={require('../assets/profile.json')}
+            autoPlay
+            loop={false}
+            style={styles.profilepic}
+        />
       <Text style={styles.title}>{user.username}'s Profile</Text>
       <View style={styles.bottom}>
         <View style={styles.statContainer}>
