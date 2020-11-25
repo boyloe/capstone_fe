@@ -71,7 +71,7 @@ SwingVote is a mobile application that helps to bridge the common knowledge gap 
 - Javascript
 - React Native
 - Ruby on Rails
-- [SmartVote API](https://votesmart.org/share/api#.X616OJNKii4)
+- [Vote Smart API](https://votesmart.org/share/api#.X616OJNKii4)
 - Bcrypt
 - Expo
 - Lottie
