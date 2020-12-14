@@ -12,7 +12,7 @@ export default function ViewElections() {
   const [zipCode4, setZipCode4] = useState()
   const [electionList, setElectionList] = useState([])
   const baseURL = 'http://localhost:3000'
-
+  //unused variables
   const Item = ({ item, onPress, style }) => (
 
     <TouchableOpacity style={styles.item}>

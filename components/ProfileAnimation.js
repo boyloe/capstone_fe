@@ -1,3 +1,5 @@
+//remove unused imports
+
 import React, { useState, useRef } from 'react';
 import LottieView from 'lottie-react-native';
 import { StyleSheet, Text, View, Button } from 'react-native';

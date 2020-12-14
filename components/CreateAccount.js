@@ -1,3 +1,4 @@
+//removed unused imports
 import React, { useState, useEffect } from 'react'
 import { View, TextInput, StyleSheet, Text, Button, ImageBackground } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -11,7 +12,7 @@ export default function CreateAccount({ signup, alerts, login }) {
   const [password, setPassword] = useState('')
   const [loginScreen, setLoginScreen] = useState(false)
 
-
+  //Remove 'event', it isn't used
   const handleSubmit = (event) => {
     let user = {
       username,
@@ -39,7 +40,13 @@ export default function CreateAccount({ signup, alerts, login }) {
         ? <Text style={styles.heading}>Sign Up</Text>
         : <Text style={styles.heading}>Log In</Text>}
         <View style={styles.inputView}>
-          <FontAwesomeIcon icon={ faUser } size={scale(20)} style={styles.icon} color='#1D3557'/>
+          {/* Scan components vertically */}
+          <FontAwesomeIcon 
+            icon={ faUser } 
+            size={scale(20)} 
+            style={styles.icon} 
+            color='#1D3557'
+          />
           <TextInput style={styles.input} placeholder='Username' placeholderTextColor='#457B9D' onChangeText={setUserName} value={username}/>
         </View>
         <View style={styles.inputView}>
@@ -70,7 +77,7 @@ export default function CreateAccount({ signup, alerts, login }) {
     </View>
   )
 }
-
+//break styles into own folder
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -104,6 +111,7 @@ const styles = StyleSheet.create({
     padding: scale(5),
     color: '#1D3557',
     },
+    //indentation
     button: {
       padding: scale(5),
       backgroundColor:'#1D3557',
@@ -144,11 +152,6 @@ const styles = StyleSheet.create({
     },
     form: {
       alignItems: 'center',
-      // justifyContent: 'center',
-      // margin: scale(5),
-      // shadowOffset:{  width: 10,  height: 10,  },
-      // shadowColor: '#1D3557',
-      // shadowOpacity: scale(.5),
       margin: scale(8)
     },
     icon: {

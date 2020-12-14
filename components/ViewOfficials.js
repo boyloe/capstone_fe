@@ -7,7 +7,7 @@ import CandidateBio from './CandidateBio';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
-
+//unused variables
 export default function ViewOfficials({ navigation, addLike, user  }) {
 
   const [zipCode5, setZipCode5] = useState()
@@ -17,7 +17,7 @@ export default function ViewOfficials({ navigation, addLike, user  }) {
   const [bioVisible, setBioVisible] = useState(false)
 
   const baseURL = 'http://localhost:3000'
-
+  //unused variables
   const Item = ({ item, onPress, style }) => (
     <TouchableOpacity
       style={styles.item}
@@ -41,7 +41,7 @@ export default function ViewOfficials({ navigation, addLike, user  }) {
       <Item key={item.id} item={item}/>
     )
   }
-
+  //unused variables
   const getOfficials = (event, zipCode5, zipCode4) => {
     (zipCode4 ? 
     fetch(`${baseURL}/officials/zipfull/${zipCode5}/${zipCode4}`) :
@@ -71,6 +71,7 @@ export default function ViewOfficials({ navigation, addLike, user  }) {
           style={styles.list}
           extraData={officialList}
           data={officialList}
+          //unused variables
           keyExtractor={(item, index) => {
             return item.id;
           }}

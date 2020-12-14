@@ -1,3 +1,4 @@
+//Remove unused imports
 import { StatusBar } from 'expo-status-bar';
 import React, { Component, useState, useEffect, useRef } from 'react';
 import { View, TextInput, StyleSheet, Text, Button, Image, SafeAreaView, ScrollView, Animated, Modal } from 'react-native';
@@ -12,7 +13,7 @@ import LottieView from 'lottie-react-native';
 
 
 export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
-
+  //animation and animation2 are the same thing?
   const animation = useRef(null)
   const animation2 = useRef(null)
 
@@ -22,6 +23,7 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
   const [isElectionCollapsed, setIsElectionCollapsed] = useState(true)
 
   const baseURL = 'http://localhost:3000'
+  //never used
   const [justLiked, setJustLiked] = useState(false)
   const [justDisliked, setJustDisliked] = useState(false)
 
@@ -37,6 +39,7 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
     console.log('like handled')
   }
 
+  //Handle Dislike function not used?
   const handleDislike = () => {
     addDislike(id)
 
@@ -91,19 +94,29 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
             <FontAwesomeIcon icon={ faBriefcase } size={scale(15)} color='#1D3557'/>
             <Text style={styles.heading}>  Office Information </Text>
             {isOfficeCollapsed 
-            ? <FontAwesomeIcon icon={ faChevronRight } size={scale(12)} style={styles.icon} color='#457B9D'/>
+            ? <FontAwesomeIcon 
+                icon={ faChevronRight } 
+                size={scale(12)} 
+                style={styles.icon} 
+                color='#457B9D'/>
             : <FontAwesomeIcon icon={ faChevronDown } size={scale(12)} style={styles.icon} color='#457B9D'/>}
           </View>
         </TouchableOpacity>
+        {/* Break these down vertically */}
           <Collapsible collapsed={isOfficeCollapsed}>
-            <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Title:</Text><Text style={styles.info}> {candidateInfo.bio.office.title} - {candidateInfo.bio.office.type} </Text></View>
+            <View style={{flexDirection:'row'}}>
+              <Text style={styles.infoTitle}>Title:</Text>
+              <Text style={styles.info}> 
+                {candidateInfo.bio.office.title} - {candidateInfo.bio.office.type} 
+              </Text>
+            </View>
             <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>District:</Text><Text style={styles.info}> {candidateInfo.bio.office.district} </Text></View>
             <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Party:</Text><Text style={styles.info}>{candidateInfo.bio.office.parties} </Text></View>
             <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Status:</Text><Text style={styles.info}> {candidateInfo.bio.office.status} </Text></View>
             <View style={{flexDirection:'row'}}><Text style={styles.infoTitle}>Last Elected:</Text><Text style={styles.info}> {candidateInfo.bio.office.lastElect} </Text></View>
           </Collapsible>
         </>
-       : null }
+      : null }
       {candidateInfo.bio.election ?
           <>
             <TouchableOpacity onPress={() => setIsElectionCollapsed(!isElectionCollapsed)}>
@@ -155,7 +168,7 @@ export default function CandidateBio ({ id, user, setBioVisible, addLike }) {
       </>
   )
 }
-
+//Break reused styles out into separate file
 const styles = StyleSheet.create({
   container: {
     flex: 1

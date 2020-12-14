@@ -1,3 +1,4 @@
+//Remove unused imports
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
@@ -23,8 +24,9 @@ export default function App({ navigation }) {
   const [alerts, setAlerts] = useState([])
   const [likedCandidates, setLikedCandidates] = useState([])
   const [dislikedCandidates, setDislikedCandidates] = useState([])
+  //deploy backend
   const baseURL = 'http://localhost:3000'
-
+  //consisten spacing for parenthesis and brackets
   const signup = (user) => {
     fetch(`${baseURL}/users`, {
       method: 'POST',
@@ -88,10 +90,11 @@ export default function App({ navigation }) {
         }
       })
   }
-
+  //Delete console.logs
   console.log(user, 'liked candidates', likedCandidates, 'disliked candidaes', dislikedCandidates)
 
   return (
+    //Don't need this React fragment,
     <>
 
     <NavigationContainer>
@@ -147,6 +150,7 @@ export default function App({ navigation }) {
   );
 }
 
+//
 const styles = StyleSheet.create({
   container: {
     flex: 1,

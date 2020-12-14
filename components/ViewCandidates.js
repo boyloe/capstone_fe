@@ -16,6 +16,7 @@ export default function ViewCandidates({ addLike, user }) {
   const [bioVisible, setBioVisible] = useState(false)
   const baseURL = 'http://localhost:3000'
 
+  //unused variables
   const Item = ({ item, onPress, style }) => (
 
     <TouchableOpacity
@@ -38,7 +39,7 @@ export default function ViewCandidates({ addLike, user }) {
       <Item key={item.id} item={item}/>
     )
   }
-
+  //unused variables
   const getCandidates = (event, zipCode5, zipCode4) => {
     (zipCode4 ? 
     fetch(`${baseURL}/candidates/zipfull/${zipCode5}/${zipCode4}`) :

@@ -1,3 +1,5 @@
+//Delete unused imports
+
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { StyleSheet, Text, View, Button, Modal } from 'react-native';
@@ -22,6 +24,7 @@ export default function Home({ addLike, alerts, login, navigation, user, signup,
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
+        //consistent parenthesis and bracket spacing
         <FontAwesomeIcon icon={ faUserCircle } style={{margin: scale(18)}} size={scale(28)} color='#FFFFFF' onPress={() => navigation.navigate('Profile')} />
       ),
     });
@@ -123,7 +126,6 @@ const styles = StyleSheet.create({
     padding: scale(3)
   },
   icon: {
-    // margin: scale(-1)
   },
   login: {
     paddingBottom: scale(5)

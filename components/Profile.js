@@ -1,3 +1,4 @@
+//Remove unused imports
 import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, View, Button, Link } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -10,7 +11,7 @@ import Collapsible from 'react-native-collapsible';
 import LottieView from 'lottie-react-native';
 import ProfileAnimation from './ProfileAnimation';
 
-
+//Remove unused variables from destructuring
 export default function Profile({ alerts, navigation, user, logout, signup, setUser, setLikedCandidates, setDislikedCandidates, likedCandidates, dislikedCandidates  }) {
 
   const [isLikedCollapsed, setIsLikedCollapsed] = useState(true)
@@ -21,6 +22,7 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
     logout()
   }
 
+  //functions never used?
   const renderDislikedStat = () => {
     return (
       dislikedCandidates.length === 1 ? `You have disliked ${dislikedCandidates.length} politician.` :
@@ -106,7 +108,7 @@ export default function Profile({ alerts, navigation, user, logout, signup, setU
     </View>
   )
 }
-
+//Remove commented out code
 const styles = StyleSheet.create({
   container: {
     flex: 1,
